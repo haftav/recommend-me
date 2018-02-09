@@ -9,6 +9,7 @@ import Header from './components/Header.js';
 import Search from './components/Search.js';
 import ResultsContainer from './components/ResultsContainer.js';
 import DisplayTitle from './components/DisplayTitle';
+import RecsContainer from './components/RecsContainer.js';
 
 class App extends Component {
   constructor() {
@@ -78,13 +79,16 @@ class App extends Component {
         <Header /> 
         <Search handleType={this.handleType}
                 handleClick={this.handleClick}
-                handleSearchChange={this.handleSearchChange} />
+                handleSearchChange={this.handleSearchChange} 
+                buttonText="Search"/>
         {
           this.state.display
           ?
           <div>
             <DisplayTitle title={this.state.titleName} text={this.state.titleText}/>
-            <ResultsContainer results={ this.state.recs }/>
+            <ResultsContainer results={ this.state.recs }
+                              onClick={ null }/>
+            <RecsContainer />
           </div>
           :
           null

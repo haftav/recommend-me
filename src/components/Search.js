@@ -15,7 +15,7 @@ class Search extends Component {
                 <option value="games">Games</option>
                 </select>
                 <input placeholder="Name" onChange={(e) => this.props.handleSearchChange(e.target.value)}/>
-                <button onClick={this.props.handleClick}>Click for Data</button> 
+                <button onClick={this.props.handleClick}> {this.props.buttonText} </button> 
             </div>
         )
     }

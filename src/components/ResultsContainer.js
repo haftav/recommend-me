@@ -17,7 +17,10 @@ class ResultsContainer extends Component {
     render() {
         const results = this.props.results.map((el, idx) => {
             return (
-                <Result key={idx} name={ el.Name } type={ el.Type } />
+                <Result key={idx} 
+                        name={ el.Name } 
+                        type={ el.Type } 
+                        onClick={this.props.onClick}/>
             )
         });
         return (

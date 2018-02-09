@@ -1,12 +1,12 @@
 import React from 'react';
 
-var Result = ( { name, type } ) => {
+var Result = ( { name, type, onClick } ) => {
 
     return (
-        <div>
+        <a href='#' onClick={onClick} value={ name }>
             <h3> { name } </h3>
             <p> { type } </p>
-        </div>
+        </a>
     )
 }
 
