@@ -10,7 +10,7 @@ class RecsContainer extends Component {
 
         this.state = {
             recs: [],
-            searchClicked: false,
+            clicked: false,
             nameClicked: false,
             recText: '',
             recName: '',
@@ -24,7 +24,10 @@ class RecsContainer extends Component {
     }
 
     handleClick() {
-        this.setState({ searchClicked: ( this.state.searchClicked ? false : true ) })
+        this.setState({ 
+            clicked: ( this.state.clicked ? false : true ),
+            nameClicked: false
+        })
     }
 
     handleTextChange(val) {
@@ -57,7 +60,7 @@ class RecsContainer extends Component {
                 <h2>Add Recommendation</h2>
                 <button onClick={this.handleClick}>Click to Add</button>
                 {
-                this.state.searchClicked
+                this.state.clicked
                 ?
                 modal
                 :

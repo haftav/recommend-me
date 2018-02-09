@@ -17,7 +17,7 @@ class ModalSearch extends Component {
             searchString: '',
             titleType: '',
             searchResults: [],
-            clicked: false
+            searchClicked: false
         }
         
         this.handleClick = this.handleClick.bind(this);
@@ -50,11 +50,11 @@ class ModalSearch extends Component {
             searchResults: results, 
             titleName: title, 
             titleText: text,
-            clicked: (this.state.clicked ? false : true)
+            searchClicked: (this.state.searchClicked ? false : true)
         })
     
         } else {
-          this.setState({ searchResults: [], titleName: '', clicked: false})
+          this.setState({ searchResults: [], titleName: '', searchClicked: false})
         }
       }
 
@@ -76,12 +76,12 @@ class ModalSearch extends Component {
         const displayResults = <ResultsContainer results={ this.state.searchResults }
                                                 onClick={this.props.grabRecName} />;
 
-        const submit = <ModalSubmit />
+        const submit = <ModalSubmit name={ this.props.name }/>
 
         return (
             <div>
                 {
-                !this.state.clicked
+                !this.state.searchClicked
                 ?
                 search
                 :
