@@ -29,7 +29,7 @@ class App extends Component {
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleType = this.handleType.bind(this);
-
+    this.talkToServer = this.talkToServer.bind(this);
 
   }
 
@@ -41,26 +41,27 @@ class App extends Component {
     $.ajax({url:`https://tastedive.com/api/similar?q=${this.state.searchString}&limit=4&verbose=1&${type}k=${key}`, 
     type: 'GET', 
     dataType: 'jsonp',
-    success: (res) => {
-      console.log(res);
-      if (res.Similar.Results.length > 0) {
-        let title = res.Similar.Info[0].Name;
-        console.log('state type: ' + this.state.titleType)
-        let displayType = (this.state.titleType === '' ? 'all' : this.state.titleType);
-        let text = res.Similar.Info[0].wTeaser;
-        console.log('type: ' + displayType)
-        console.log('text: ' + text)
-        axios.post('/api/items', { title: title, type: displayType, text: text }).then(res => {
-          console.log(res);
-        });
-        this.setState({ recs: res.Similar.Results, titleName: title, titleText: text, display: true})
+    success: this.talkToServer})
 
-      } else {
-        this.setState({ recs: [], titleName: '', display: false})
-      }
+  }
 
-    }})
+  talkToServer(res) {
+    console.log(res);
+    if (res.Similar.Results.length > 0) {
+      let title = res.Similar.Info[0].Name;
+      console.log('state type: ' + this.state.titleType)
+      let type = (this.state.titleType === '' ? 'all' : this.state.titleType);
+      let text = res.Similar.Info[0].wTeaser;
+      console.log('type: ' + type)
+      console.log('text: ' + text)
+      axios.post('/api/items', { title: title, type: type, text: text }).then(res => {
+        console.log(res);
+      });
+      this.setState({ recs: res.Similar.Results, titleName: title, titleText: text, display: true})
 
+    } else {
+      this.setState({ recs: [], titleName: '', display: false})
+    }
   }
 
 
@@ -69,7 +70,7 @@ class App extends Component {
   }
 
   handleType(val) {
-    this.setState({ tileType: (val === 'all' ? '' : val)})
+    this.setState({ titleType: (val === 'all' ? '' : val)})
   }
   render() {
     return (
