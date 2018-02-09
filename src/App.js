@@ -16,6 +16,7 @@ class App extends Component {
 
 
     this.state = {
+      id: null,
       searchString: '',
       titleName: '',
       titleText: '',
@@ -28,7 +29,11 @@ class App extends Component {
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleType = this.handleType.bind(this);
+
+
   }
+
+
 
   handleClick() {
     let type = (this.state.titleType !== '' ? `type=${this.state.titleType}&` : '')
@@ -40,8 +45,16 @@ class App extends Component {
       console.log(res);
       if (res.Similar.Results.length > 0) {
         let title = res.Similar.Info[0].Name;
+        console.log('state type: ' + this.state.titleType)
+        let displayType = (this.state.titleType === '' ? 'all' : this.state.titleType);
         let text = res.Similar.Info[0].wTeaser;
+        console.log('type: ' + displayType)
+        console.log('text: ' + text)
+        axios.post('/api/items', { title: title, type: displayType, text: text }).then(res => {
+          console.log(res);
+        });
         this.setState({ recs: res.Similar.Results, titleName: title, titleText: text, display: true})
+
       } else {
         this.setState({ recs: [], titleName: '', display: false})
       }
@@ -49,6 +62,7 @@ class App extends Component {
     }})
 
   }
+
 
   handleSearchChange(val) {
     this.setState({ searchString: val })

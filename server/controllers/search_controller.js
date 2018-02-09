@@ -5,6 +5,8 @@ var recId = 0;
 var test = {
     id: 0,
     title: "The Big Lebowski",
+    type: "Movie",
+    text: "blah blah blah",
     recommends: [
         {
             id: 0,
@@ -18,7 +20,13 @@ var test = {
 
 module.exports = {
     newSearch: (req, res) => {
-
+    let { title, type, text } = req.body;
+    let index = searches.findIndex((el) => (el.title === title && el.type === type));
+        if (index === -1) {
+            searches.push({ id: searchId, title, type, text, recommends: [] })
+            searchId++;
+        }
+        res.status(200).send(searches);
     },
     getSearch: (req, res) => {
         res.status(200).send(test);

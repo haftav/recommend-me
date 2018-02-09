@@ -7,6 +7,8 @@ const port = 3005;
 
 app.use(bodyParser.json());
 
-app.get('/api/', ctrl.getSearch);
+app.get('/api/items', ctrl.getSearch);
+app.post('/api/items', ctrl.newSearch);
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
