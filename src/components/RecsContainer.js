@@ -10,7 +10,8 @@ class RecsContainer extends Component {
 
         this.state = {
             recs: [],
-            clicked: false,
+            searchClicked: false,
+            nameClicked: false,
             recText: '',
             recName: '',
             recTime: ''
@@ -23,7 +24,7 @@ class RecsContainer extends Component {
     }
 
     handleClick() {
-        this.setState({ clicked: ( this.state.clicked ? false : true ) })
+        this.setState({ searchClicked: ( this.state.searchClicked ? false : true ) })
     }
 
     handleTextChange(val) {
@@ -38,19 +39,25 @@ class RecsContainer extends Component {
 
     grabRecName(val) {
         console.log(val);
+        this.setState({ 
+            recName: val,
+            nameClicked: (this.state.nameClicked ? false : true )
+        })
     }
 
     render() {
         const modal = <ModalSearch handleTextChange={this.handleTextChange} 
                             handleNameChange={this.handleNameChange}
-                            grabRecName={this.grabRecName}/>;
+                            grabRecName={this.grabRecName}
+                            nameClicked={this.state.nameClicked}
+                            name={this.state.recName}/>;
 
         return (
             <div>
                 <h2>Add Recommendation</h2>
                 <button onClick={this.handleClick}>Click to Add</button>
                 {
-                this.state.clicked
+                this.state.searchClicked
                 ?
                 modal
                 :

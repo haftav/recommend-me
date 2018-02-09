@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Search from './Search.js';
 import ResultsContainer from './ResultsContainer.js';
+import ModalSubmit from './ModalSubmit.js';
 import key from '../key.js';
 
 
@@ -36,19 +37,15 @@ class ModalSearch extends Component {
       }
     
       talkToServer(res) {
-        // console.log(res);
+
         if (res.Similar.Results.length > 0) {
           let title = res.Similar.Info[0].Name;
-        //   console.log('state type: ' + this.state.titleType)
           let type = (this.state.titleType === '' ? 'all' : this.state.titleType);
           let text = res.Similar.Info[0].wTeaser;
-        //   console.log('type: ' + type)
-        //   console.log('text: ' + text)
           let results = res.Similar.Results;
-          results.unshift(res.Similar.Info[0]);
-          console.log(results);
-  
 
+          results.unshift(res.Similar.Info[0]);
+  
           this.setState({
             searchResults: results, 
             titleName: title, 
@@ -77,7 +74,10 @@ class ModalSearch extends Component {
             buttonText="Search"/>
         )
         const displayResults = <ResultsContainer results={ this.state.searchResults }
-                                                onClick={this.props.grabRecName}/>;
+                                                onClick={this.props.grabRecName} />;
+
+        const submit = <ModalSubmit />
+
         return (
             <div>
                 {
@@ -85,7 +85,7 @@ class ModalSearch extends Component {
                 ?
                 search
                 :
-                displayResults
+                (this.props.nameClicked ? <ModalSubmit name={ this.props.name }/> : displayResults)
                 }
 
             </div>

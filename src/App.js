@@ -31,6 +31,7 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleType = this.handleType.bind(this);
     this.talkToServer = this.talkToServer.bind(this);
+    this.handleNameClick = this.handleNameClick.bind(this);
 
   }
 
@@ -73,6 +74,11 @@ class App extends Component {
   handleType(val) {
     this.setState({ titleType: (val === 'all' ? '' : val)})
   }
+
+  handleNameClick(val) {
+    return ;
+  }
+
   render() {
     return (
       <div className="App">
@@ -87,7 +93,7 @@ class App extends Component {
           <div>
             <DisplayTitle title={this.state.titleName} text={this.state.titleText}/>
             <ResultsContainer results={ this.state.recs }
-                              onClick={ null }/>
+                              onClick={ this.handleNameClick }/>
             <RecsContainer />
           </div>
           :
