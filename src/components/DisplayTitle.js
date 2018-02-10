@@ -7,7 +7,6 @@ var DisplayTitle = ( { title, text } ) => {
             <h2> { title } </h2>
             {/* <img src={ image } alt="" /> */}
             <p> { text } </p>
-            <h3>Similar Results</h3>
         </div>
     )
 }

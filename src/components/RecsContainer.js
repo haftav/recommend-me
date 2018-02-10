@@ -170,7 +170,7 @@ class RecsContainer extends Component {
                             name={this.state.recName}
                             id={this.props.id} />
         return (
-            <div>
+            <div class="recs-container">
                 <h2>Add Recommendation</h2>
                 <button onClick={this.handleClick}>Click to Add</button>
                 {

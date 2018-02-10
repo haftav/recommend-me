@@ -25,7 +25,11 @@ class ResultsContainer extends Component {
         });
         return (
             <div className="results-container">
-                { results }
+                <h3>Similar Results</h3>
+                <div className="results-display">
+                    { results }
+                </div>
+
             </div>
         )
     }

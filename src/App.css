@@ -1,9 +1,16 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   width: 100%;
   min-height: 100vh;
   text-align: center;
   margin: auto;
-  background: linear-gradient(to top right, rgb(39, 76, 87), rgb(4, 9, 17));
+  background: linear-gradient(to top right, rgb(39, 69, 87), rgb(4, 9, 17));
   overflow: hidden;
   color: rgb(243, 243, 243);
 }
@@ -16,25 +23,51 @@
   margin-bottom: 30px;
 }
 
-body {
-  background: #ACBDD3;
+.display-title {
+  width: 50%;
+  min-height: 250px;
+  margin: 40px auto 0px auto;
+  border: 1px solid lightgray;
+  border-radius: 5px;
 }
 
-.display-title {
-  width: 80%;
-  margin: auto;
+.display-title h2 {
+  margin: 25px;
+  width: 150px;
+  height: 200px;
+  background: rgb(169, 203, 219);
+  float: left;
 }
 
 .display-title p {
-  margin: 25px 5px 25px 5px;
+  margin: 10px 5px 0px 5px;
   line-height: 1.6em;
+  padding: 25px;
+  color: rgb(211, 217, 221);
+}
+
+.recs-container {
+  margin: 25px;
 }
 
 .results-container {
+  min-height: 250px;  
+  width: 60%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.results-container > h3 {
+  display: block;
+  height: 25px;
+  margin: 25px;
+}
+
+.results-display { 
+  width: 75%;
   margin: auto;
   display: flex;
   justify-content: center;
-  width: 75%;
   background: #3c4d57;
 }
 
@@ -68,61 +101,48 @@ body {
 }
 
 
+
 .rec {
-  width: 70%;
+  width: 600px;
   min-height: 100px;
   position: relative;
-  display: flex;
-  justify-content: space-between;
   margin: 25px auto;
-  background: palegreen;
-
-  overflow: hidden;
+  border: 2px solid lightgray;
+  border-radius: 5px;
+  overflow: auto;
 }
 
-.modify-buttons {
-  display: flex;
-  flex-direction: column;
-  background: red;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  top: 5px;
-  right: 5px;
-}
-
-.rec h1 {
-  font-size: 25px;
-  margin-left: 50px;
-  width: 50px;
+.rec > h1 {
+  width: 100px;
+  font-size: 20px;
   background: lightsalmon;
+  margin: 10px 0px;
+  float: left;
 }
 
 .rec h3 {
   background: lightgray;
-  margin: 10px auto;
-  width: 60%;
+  margin: 20px auto;
+  width: 50%;
   text-align: left;
+  display: inline-block;
+
+  font-weight: 200;
 }
 
-.rec input {
-  margin: 10px auto;
-  width: 60%;
-  text-align: left;
-}
-
-.time-name {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  background: pink;
-  display: flex;
-}
-
-.time-name p {
-  margin: 0px 10px;
-}
-
-.time-name input {
+.rec-container-right {
+  background: lightblue;
   width: 100px;
+  min-height: 150px;
+  float: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.modify-buttons button {
+  width: 50px;
+  height: 25px;
+  margin: 0px 15px 5px 15px;
 }
