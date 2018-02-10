@@ -42,10 +42,18 @@ module.exports = {
 
         recId++;
 
-        res.status(200).send(searches)
+        res.status(200).send(searches[index].recommends)
 
     },
     getRec: (req, res) => {
+        let { i } = req.params
+
+        index = searches.findIndex((el) => el.id === Number(i));
+        if (index !== -1) {
+            res.status(200).send(searches[index].recommends)
+        } else {
+            res.status(200).json('You got nothin')
+        }
 
     },
     editRec: (req, res) => {

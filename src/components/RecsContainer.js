@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import ModalSearch from './ModalSearch.js';
 import ModalSubmit from './ModalSubmit.js';
+import Rec from './Rec.js';
 
 
 class RecsContainer extends Component {
@@ -28,23 +29,31 @@ class RecsContainer extends Component {
         this.addToServer = this.addToServer.bind(this);
     }
 
+    componentWillReceiveProps(newProps) {
+        console.log('rec id: ' + newProps.id);
+        axios.get(`api/recommends/${newProps.id}`).then(res => {
+            console.log(res.data);
+            this.setState({ recs: res.data })
+        });
+    }
+
+
+
+
     handleClick() {
-        console.log('here');
+
         this.setState({ 
             clicked: ( this.state.clicked ? false : true ),
             nameClicked: false,
-            submitClicked: false,
-            searchClicked: false
+            submitClicked: false
         })
     }
 
     handleTextChange(val) {
-        console.log(val);
         this.setState({ recText: val })
     }
 
     handleNameChange(val) {
-        console.log(val);
         this.setState({ userName: val })
     }
 
@@ -56,7 +65,6 @@ class RecsContainer extends Component {
     }
 
     addToServer() {
-        console.log("here")
         axios.post('/api/recommends', {
             title: this.state.recName, 
             text: this.state.recText,
@@ -64,12 +72,21 @@ class RecsContainer extends Component {
             id: this.props.id
         }).then(res => {
             console.log(res.data);
-            console.log(this.state.submitClicked)
-            this.setState({ submitClicked: true })
+            this.setState({ 
+                submitClicked: true, 
+                clicked: false,
+                recs: res.data
+            })
         })
     }
 
     render() {
+         const recommends = this.state.recs.map((el, idx) => {
+             let title = el.title;
+             let name = el.name;
+             let text = el.text;
+            return <Rec title={title} name={name} text={text}/>
+         });
         const modalSearch = <ModalSearch  
                             grabRecName={this.grabRecName}
                             nameClicked={this.state.nameClicked}
@@ -78,7 +95,7 @@ class RecsContainer extends Component {
                             handleNameChange={this.handleNameChange}
                             handleClick={this.addToServer}
                             name={this.state.recName}
-                            id={this.props.id}  />
+                            id={this.props.id} />
         return (
             <div>
                 <h2>Add Recommendation</h2>
@@ -97,6 +114,8 @@ class RecsContainer extends Component {
                     :
                     null
                 }
+
+                { recommends }
                     
             </div>
         )

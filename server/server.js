@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 
 app.get('/api/items', ctrl.getSearch);
 app.post('/api/items', ctrl.newSearch);
+app.get('/api/recommends/:i', ctrl.getRec);
 app.post('/api/recommends', ctrl.newRec);
 
 

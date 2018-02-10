@@ -25,7 +25,7 @@ class App extends Component {
       recs: [],
       userRecs: [],
       display: false,
-      submitClicked: false
+      clicked: false
     }
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
@@ -35,7 +35,6 @@ class App extends Component {
     this.handleNameClick = this.handleNameClick.bind(this);
 
   }
-
 
   handleClick() {
     let type = (this.state.titleType !== '' ? `type=${this.state.titleType}&` : '')
@@ -48,21 +47,25 @@ class App extends Component {
   }
 
   talkToServer(res) {
+    console.log('app id: ' + this.state.id);
     if (res.Similar.Results.length > 0) {
       let title = res.Similar.Info[0].Name;
       let type = (this.state.titleType === '' ? 'all' : this.state.titleType);
       let text = res.Similar.Info[0].wTeaser;
 
       axios.post('/api/items', { title: title, type: type, text: text }).then(res => {
-        console.log(res.data[res.data.length - 1].id);
-        this.setState({ id: res.data[res.data.length - 1].id });
+        let index = res.data.findIndex((el) => el.title === title && el.type === type);
+        if (index !== -1) {
+          this.setState({ id: res.data[index].id });
+        }
+
       });
       this.setState({ 
         recs: res.Similar.Results, 
         titleName: title, 
         titleText: text, 
-        display: true,
-        submitClicked: false})
+        display: true
+      })
 
     } else {
       this.setState({ recs: [], titleName: '', display: false})
