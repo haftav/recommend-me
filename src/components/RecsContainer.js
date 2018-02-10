@@ -5,7 +5,6 @@ import ModalSearch from './ModalSearch.js';
 import ModalSubmit from './ModalSubmit.js';
 import Rec from './Rec.js';
 
-
 class RecsContainer extends Component {
     constructor() {
         super();
@@ -16,8 +15,11 @@ class RecsContainer extends Component {
             nameClicked: false,
             searchClicked: false,
             submitClicked: false,
+            editClicked: false,
             recText: '',
             recName: '',
+            newText: '',
+            newName: '',
             recTime: '',
             userName: ''
         }
@@ -27,21 +29,20 @@ class RecsContainer extends Component {
         this.handleNameChange = this.handleNameChange.bind(this);
         this.grabRecName = this.grabRecName.bind(this);
         this.addToServer = this.addToServer.bind(this);
+        this.handleSubmitClick = this.handleSubmitClick.bind(this);
+        this.handleCancelClick = this.handleCancelClick.bind(this);
+        this.handleEditClick = this.handleEditClick.bind(this);
+        this.baseState = Object.assign({}, this.state);
     }
 
     componentWillReceiveProps(newProps) {
-        console.log('rec id: ' + newProps.id);
+        console.log("i'm getting props")
         axios.get(`api/recommends/${newProps.id}`).then(res => {
-            console.log(res.data);
             this.setState({ recs: res.data })
         });
     }
 
-
-
-
     handleClick() {
-
         this.setState({ 
             clicked: ( this.state.clicked ? false : true ),
             nameClicked: false,
@@ -65,11 +66,10 @@ class RecsContainer extends Component {
     }
 
     addToServer() {
-        axios.post('/api/recommends', {
+        axios.post(`/api/recommends/${this.props.id}`, {
             title: this.state.recName, 
             text: this.state.recText,
             name: this.state.userName,
-            id: this.props.id
         }).then(res => {
             console.log(res.data);
             this.setState({ 
@@ -80,17 +80,48 @@ class RecsContainer extends Component {
         })
     }
 
+    handleEditClick() {
+        console.log('here');
+        this.setState({ editClicked: true})
+    }
+
+    handleSubmitClick(title, name, text, recId) {
+        console.log('id: ' + recId)
+        axios.put(`/api/recommends/${this.props.id}`, { title, name, text, recId}).then(res => {
+            console.log(res);
+            this.setState({ editClicked: false, recs: res.data })
+        })
+
+    }
+
+    handleCancelClick() {
+
+    }
+
+
+
     render() {
          const recommends = this.state.recs.map((el, idx) => {
              let title = el.title;
              let name = el.name;
              let text = el.text;
-            return <Rec title={title} name={name} text={text}/>
+             let recId = el.recId;
+            return <Rec title={title} 
+                        name={name} 
+                        text={text}
+                        recId={el.recId} 
+                        id={this.props.id}
+                        key={idx} 
+                        editClicked={this.state.editClicked}
+                        handleEditClick={this.handleEditClick}
+                        handleCancelClick={this.handleCancelClick}
+                        handleSubmitClick={this.handleSubmitClick} />
          });
         const modalSearch = <ModalSearch  
                             grabRecName={this.grabRecName}
                             nameClicked={this.state.nameClicked}
-                            searchClicked={this.state.searchClicked} />;
+                            searchClicked={this.state.searchClicked} 
+                            modalOpen={this.state.clicked}/>;
         const modalSubmit = <ModalSubmit handleTextChange={this.handleTextChange}
                             handleNameChange={this.handleNameChange}
                             handleClick={this.addToServer}

@@ -24,7 +24,7 @@ class ResultsContainer extends Component {
             )
         });
         return (
-            <div>
+            <div className="results-container">
                 { results }
             </div>
         )

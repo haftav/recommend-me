@@ -9,8 +9,9 @@ app.use(bodyParser.json());
 
 app.get('/api/items', ctrl.getSearch);
 app.post('/api/items', ctrl.newSearch);
-app.get('/api/recommends/:i', ctrl.getRec);
-app.post('/api/recommends', ctrl.newRec);
+app.get('/api/recommends/:id', ctrl.getRec);
+app.post('/api/recommends/:id', ctrl.newRec);
+app.put('/api/recommends/:id', ctrl.editRec);
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

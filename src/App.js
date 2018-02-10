@@ -47,13 +47,14 @@ class App extends Component {
   }
 
   talkToServer(res) {
-    console.log('app id: ' + this.state.id);
+
     if (res.Similar.Results.length > 0) {
       let title = res.Similar.Info[0].Name;
       let type = (this.state.titleType === '' ? 'all' : this.state.titleType);
       let text = res.Similar.Info[0].wTeaser;
 
       axios.post('/api/items', { title: title, type: type, text: text }).then(res => {
+        console.log(res);
         let index = res.data.findIndex((el) => el.title === title && el.type === type);
         if (index !== -1) {
           this.setState({ id: res.data[index].id });

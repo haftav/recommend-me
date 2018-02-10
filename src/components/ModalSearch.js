@@ -6,6 +6,7 @@ import Search from './Search.js';
 import ResultsContainer from './ResultsContainer.js';
 import ModalSubmit from './ModalSubmit.js';
 import key from '../key.js';
+import ReactModal from 'react-modal';
 
 
 
@@ -81,16 +82,15 @@ class ModalSearch extends Component {
                                     handleClick={this.props.addToServer}/>
 
         return (
-            <div>
-                {
-                !this.state.searchClicked
-                ?
-                search
-                :
-                (this.props.nameClicked ? null : displayResults)
-                }
-
-            </div>
+                <div>
+                    {
+                    !this.state.searchClicked
+                    ?
+                    search
+                    :
+                    (this.props.nameClicked ? null : displayResults)
+                    }
+                </div>
         )
     }
 

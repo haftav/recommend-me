@@ -2,3 +2,97 @@
   text-align: center;
 }
 
+.display-title {
+  width: 80%;
+  margin: auto;
+}
+
+.results-container {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+
+.result {
+  margin: 25px;
+  width: 150px;
+  height: 200px;
+  background: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.result h3, .result p {
+  width: 125px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.result p {
+  position: absolute;
+  bottom: 0;
+  right: -10px;
+}
+
+
+.rec {
+  width: 70%;
+  min-height: 100px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin: 25px auto;
+  background: palegreen;
+
+  overflow: hidden;
+}
+
+.modify-buttons {
+  display: flex;
+  flex-direction: column;
+  background: red;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.rec h1 {
+  font-size: 25px;
+  margin-left: 50px;
+  width: 50px;
+  background: lightsalmon;
+}
+
+.rec h3 {
+  background: lightgray;
+  margin: 10px auto;
+  width: 60%;
+  text-align: left;
+}
+
+.rec input {
+  margin: 10px auto;
+  width: 60%;
+  text-align: left;
+}
+
+.time-name {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: pink;
+  display: flex;
+}
+
+.time-name p {
+  margin: 0px 10px;
+}
+
+.time-name input {
+  width: 100px;
+}
