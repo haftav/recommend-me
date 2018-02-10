@@ -12,6 +12,6 @@ app.post('/api/items', ctrl.newSearch);
 app.get('/api/recommends/:id', ctrl.getRec);
 app.post('/api/recommends/:id', ctrl.newRec);
 app.put('/api/recommends/:id', ctrl.editRec);
-
+app.delete('/api/recommends/:mainId/:recId', ctrl.deleteRec)
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

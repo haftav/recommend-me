@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import axios from 'axios';
 
 import Search from './Search.js';
 import ResultsContainer from './ResultsContainer.js';
-import ModalSubmit from './ModalSubmit.js';
 import key from '../key.js';
-import ReactModal from 'react-modal';
 
 
 
@@ -41,7 +38,6 @@ class ModalSearch extends Component {
 
         if (res.Similar.Results.length > 0) {
           let title = res.Similar.Info[0].Name;
-          let type = (this.state.titleType === '' ? 'all' : this.state.titleType);
           let text = res.Similar.Info[0].wTeaser;
           let results = res.Similar.Results;
 
@@ -77,9 +73,6 @@ class ModalSearch extends Component {
         const displayResults = <ResultsContainer results={ this.state.searchResults }
                                                 onClick={this.props.grabRecName} />;
 
-        const submit = <ModalSubmit name={ this.props.name } 
-                                    id={this.props.id}
-                                    handleClick={this.props.addToServer}/>
 
         return (
                 <div>

@@ -34,6 +34,7 @@ class RecsContainer extends Component {
         this.handleSubmitClick = this.handleSubmitClick.bind(this);
         this.handleEditClick = this.handleEditClick.bind(this);
         this.handleCancelClick = this.handleCancelClick.bind(this);
+        this.handleDeleteClick = this.handleDeleteClick.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
@@ -97,6 +98,22 @@ class RecsContainer extends Component {
         })
     }
 
+    handleDeleteClick(key) {
+        axios.delete(`/api/recommends/${this.props.id}/${key}`).then(res => {
+            console.log(res.data);
+            this.setState({ recs: res.data })
+        })
+    }
+
+
+
+    handleSubmitClick(title, name, text, recId) {
+        console.log('id: ' + recId)
+        axios.put(`/api/recommends/${this.props.id}`, { title, name, text, recId}).then(res => {
+            console.log(res);
+            this.setState({ editClicked: false, recs: res.data, editId: null })
+        })
+    }
 
     handleCancelClick() {
         this.setState({ 
@@ -107,16 +124,6 @@ class RecsContainer extends Component {
         })
     }
 
-    handleSubmitClick(title, name, text, recId) {
-        console.log('id: ' + recId)
-        axios.put(`/api/recommends/${this.props.id}`, { title, name, text, recId}).then(res => {
-            console.log(res);
-            this.setState({ editClicked: false, recs: res.data, editId: null })
-        })
-
-    }
-
-
 
 
 
@@ -125,7 +132,6 @@ class RecsContainer extends Component {
              let title = el.title;
              let name = el.name;
              let text = el.text;
-             let recId = el.recId;
 
             return (
                 el.recId === this.state.editId
@@ -148,8 +154,7 @@ class RecsContainer extends Component {
                     key={idx}
                     editClicked={this.state.editClicked}
                     handleEditClick={this.handleEditClick}
-                    handleCancelClick={this.handleCancelClick}
-                    handleSubmitClick={this.handleSubmitClick} />
+                    handleDeleteClick={this.handleDeleteClick} />
             )
             
 

@@ -30,9 +30,6 @@ module.exports = {
     getSearch: (req, res) => {
         res.status(200).send(test);
     },
-    editSearch: (req, res) => {
-
-    },
     newRec: (req, res) => {
         let { title, text, name } = req.body;
         let id = req.params.id;
@@ -72,6 +69,13 @@ module.exports = {
         res.status(200).send(searches[index].recommends);
     },
     deleteRec: (req, res) => {
+        const mainId = req.params.mainId;
+        const recId = req.params.recId;
 
+        const index = searches[mainId].recommends.findIndex((el) => el.recId === Number(recId))
+
+        searches[mainId].recommends.splice(index, 1);
+
+        res.status(200).send(searches[mainId].recommends)
     }
 }

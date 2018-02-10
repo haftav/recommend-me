@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-
-import Edit from './Edit.js';
 
 class Rec extends Component {
     constructor(props) {
@@ -13,31 +10,11 @@ class Rec extends Component {
             oldText: '',
             oldName: '',
         }
-
-
     }
 
-
-
-
-
-
-
-
-    // handleCancelClick() {
-    //     let baseState = this.baseState
-    //     this.setState(baseState);
-    // }
-
-    //set back to false when submit or cancel 
-
-    componentWillReceiveProps(newProps) {
-
-    }
 
     render() {
-        let { title, name, text, handleSubmitClick, 
-            handleEditClick, handleCancelClick, } = this.props;
+        let { title, name, text, handleEditClick, handleDeleteClick } = this.props;
         const submitted = (
                         <div className="rec">
                             <h1>{ title }</h1>
@@ -48,7 +25,7 @@ class Rec extends Component {
                             </div>
                             <div className="modify-buttons">
                                 <button onClick={() => handleEditClick(this.props.recId, text, name)}>Edit</button>
-                                <button>Delete</button>
+                                <button onClick={() => handleDeleteClick(this.props.recId)}>Delete</button>
                             </div>
                         </div>
                         )
