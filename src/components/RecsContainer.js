@@ -18,8 +18,8 @@ class RecsContainer extends Component {
             editClicked: false,
             recText: '',
             recName: '',
-            newText: '',
-            newName: '',
+            originalText: '',
+            originalName: '',
             recTime: '',
             userName: ''
         }
@@ -30,9 +30,8 @@ class RecsContainer extends Component {
         this.grabRecName = this.grabRecName.bind(this);
         this.addToServer = this.addToServer.bind(this);
         this.handleSubmitClick = this.handleSubmitClick.bind(this);
-        this.handleCancelClick = this.handleCancelClick.bind(this);
         this.handleEditClick = this.handleEditClick.bind(this);
-        this.baseState = Object.assign({}, this.state);
+        this.handleCancelClick = this.handleCancelClick.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
@@ -82,7 +81,21 @@ class RecsContainer extends Component {
 
     handleEditClick() {
         console.log('here');
-        this.setState({ editClicked: true})
+        const originalText = this.state.recText;
+        const originalName = this.state.userName;
+
+        this.setState({ 
+            editClicked: true,
+            originalText: originalText,
+            originalName: originalName
+        })
+    }
+
+    handleCancelClick() {
+        this.setState({ 
+            editClicked: false, 
+            recText: this.state.originalText, 
+            recName: this.state.originalName })
     }
 
     handleSubmitClick(title, name, text, recId) {
@@ -94,9 +107,7 @@ class RecsContainer extends Component {
 
     }
 
-    handleCancelClick() {
 
-    }
 
 
 
@@ -111,7 +122,9 @@ class RecsContainer extends Component {
                         text={text}
                         recId={el.recId} 
                         id={this.props.id}
-                        key={idx} 
+                        key={idx}
+                        originalText={this.state.originalText}
+                        originalName={this.state.originalName}
                         editClicked={this.state.editClicked}
                         handleEditClick={this.handleEditClick}
                         handleCancelClick={this.handleCancelClick}

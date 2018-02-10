@@ -11,16 +11,22 @@ class Rec extends Component {
             text: this.props.text,
             name: this.props.name,
             oldText: '',
-            oldName: ''
+            oldName: '',
         }
 
 
 
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
+        this.baseState = Object.assign({}, this.state);
     }
 
-
+    componentWillReceiveProps(newProps) {
+        console.log('yayaaaaa')
+        this.setState({
+            editClicked: newProps.editClicked
+        })
+    } 
 
     handleTextChange(val) {
         this.setState({ text: val })
@@ -29,7 +35,6 @@ class Rec extends Component {
     handleNameChange(val) {
         this.setState({ name: val})
     }
-
 
 
     // handleCancelClick() {
@@ -44,7 +49,9 @@ class Rec extends Component {
     }
 
     render() {
-        let {title, handleSubmitClick, handleCancelClick, handleEditClick} = this.props;
+        let { title, handleSubmitClick, 
+            handleEditClick, handleCancelClick, 
+            originalText, originalName } = this.props;
         const submitted = (
                         <div className="rec">
                             <h1>{ title }</h1>
