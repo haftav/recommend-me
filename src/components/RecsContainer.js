@@ -4,6 +4,7 @@ import axios from 'axios';
 import ModalSearch from './ModalSearch.js';
 import ModalSubmit from './ModalSubmit.js';
 import Rec from './Rec.js';
+import Edit from './Edit.js';
 
 class RecsContainer extends Component {
     constructor() {
@@ -21,7 +22,8 @@ class RecsContainer extends Component {
             originalText: '',
             originalName: '',
             recTime: '',
-            userName: ''
+            userName: '',
+            editId: null
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -79,30 +81,37 @@ class RecsContainer extends Component {
         })
     }
 
-    handleEditClick() {
+
+    handleEditClick(key, text, name) {
         console.log('here');
         const originalText = this.state.recText;
         const originalName = this.state.userName;
 
         this.setState({ 
+            editId: key,
             editClicked: true,
             originalText: originalText,
-            originalName: originalName
+            originalName: originalName,
+            recText: text,
+            userName: name
         })
     }
+
 
     handleCancelClick() {
         this.setState({ 
             editClicked: false, 
             recText: this.state.originalText, 
-            recName: this.state.originalName })
+            userName: this.state.originalName, 
+            editId: null
+        })
     }
 
     handleSubmitClick(title, name, text, recId) {
         console.log('id: ' + recId)
         axios.put(`/api/recommends/${this.props.id}`, { title, name, text, recId}).then(res => {
             console.log(res);
-            this.setState({ editClicked: false, recs: res.data })
+            this.setState({ editClicked: false, recs: res.data, editId: null })
         })
 
     }
@@ -117,18 +126,33 @@ class RecsContainer extends Component {
              let name = el.name;
              let text = el.text;
              let recId = el.recId;
-            return <Rec title={title} 
-                        name={name} 
-                        text={text}
-                        recId={el.recId} 
-                        id={this.props.id}
-                        key={idx}
-                        originalText={this.state.originalText}
-                        originalName={this.state.originalName}
-                        editClicked={this.state.editClicked}
-                        handleEditClick={this.handleEditClick}
-                        handleCancelClick={this.handleCancelClick}
-                        handleSubmitClick={this.handleSubmitClick} />
+
+            return (
+                el.recId === this.state.editId
+                ?
+                <Edit text={ this.state.recText }
+                    title={ title }
+                    name={ this.state.userName }
+                    recId={el.recId}
+                    key={idx}
+                    handleTextChange={this.handleTextChange}
+                    handleNameChange={this.handleNameChange}
+                    handleSubmitClick={this.handleSubmitClick}
+                    handleCancelClick={this.handleCancelClick}/>
+                :
+                <Rec title={title} 
+                    name={name} 
+                    text={text}
+                    recId={el.recId} 
+                    id={this.props.id}
+                    key={idx}
+                    editClicked={this.state.editClicked}
+                    handleEditClick={this.handleEditClick}
+                    handleCancelClick={this.handleCancelClick}
+                    handleSubmitClick={this.handleSubmitClick} />
+            )
+            
+
          });
         const modalSearch = <ModalSearch  
                             grabRecName={this.grabRecName}

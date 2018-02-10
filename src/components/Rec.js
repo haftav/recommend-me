@@ -15,26 +15,13 @@ class Rec extends Component {
         }
 
 
-
-        this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleTextChange = this.handleTextChange.bind(this);
-        this.baseState = Object.assign({}, this.state);
     }
 
-    componentWillReceiveProps(newProps) {
-        console.log('yayaaaaa')
-        this.setState({
-            editClicked: newProps.editClicked
-        })
-    } 
 
-    handleTextChange(val) {
-        this.setState({ text: val })
-    }
 
-    handleNameChange(val) {
-        this.setState({ name: val})
-    }
+
+
+
 
 
     // handleCancelClick() {
@@ -49,9 +36,8 @@ class Rec extends Component {
     }
 
     render() {
-        let { title, handleSubmitClick, 
-            handleEditClick, handleCancelClick, 
-            originalText, originalName } = this.props;
+        let { title, name, text, handleSubmitClick, 
+            handleEditClick, handleCancelClick, } = this.props;
         const submitted = (
                         <div className="rec">
                             <h1>{ title }</h1>
@@ -61,24 +47,13 @@ class Rec extends Component {
                                 <p>5/2/3</p>
                             </div>
                             <div className="modify-buttons">
-                                <button onClick={handleEditClick}>Edit</button>
+                                <button onClick={() => handleEditClick(this.props.recId, text, name)}>Edit</button>
                                 <button>Delete</button>
                             </div>
                         </div>
                         )
-        const edit = <Edit text={ this.state.text }
-                            title={ title }
-                            name={ this.state.name }
-                            recId={this.props.recId}
-                            handleTextChange={this.handleTextChange}
-                            handleNameChange={this.handleNameChange}
-                            handleSubmitClick={handleSubmitClick}
-                            handleCancelClick={handleCancelClick}/>
+
         return (
-                this.props.editClicked 
-                ?
-                edit
-                :
                 submitted
             )
     }
