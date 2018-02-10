@@ -50,7 +50,7 @@ class ModalSearch extends Component {
             searchResults: results, 
             titleName: title, 
             titleText: text,
-            searchClicked: (this.state.searchClicked ? false : true)
+            searchClicked: true
         })
     
         } else {
@@ -76,7 +76,9 @@ class ModalSearch extends Component {
         const displayResults = <ResultsContainer results={ this.state.searchResults }
                                                 onClick={this.props.grabRecName} />;
 
-        const submit = <ModalSubmit name={ this.props.name }/>
+        const submit = <ModalSubmit name={ this.props.name } 
+                                    id={this.props.id}
+                                    handleClick={this.props.addToServer}/>
 
         return (
             <div>
@@ -85,7 +87,7 @@ class ModalSearch extends Component {
                 ?
                 search
                 :
-                (this.props.nameClicked ? <ModalSubmit name={ this.props.name }/> : displayResults)
+                (this.props.nameClicked ? null : displayResults)
                 }
 
             </div>

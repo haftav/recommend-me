@@ -12,7 +12,7 @@ var test = {
             id: 0,
             name: "Jack",
             time: "5:30",
-            rec: "The Long Goodbye",
+            title: "The Long Goodbye",
             text: "Robert Altman's film deconstructs the classic Noir hero."
         }
     ]
@@ -35,6 +35,14 @@ module.exports = {
 
     },
     newRec: (req, res) => {
+        let { title, text, name, id } = req.body;
+        index = searches.findIndex((el) => el.id === Number(id));
+
+        searches[index].recommends.push( { recId, title, name, text } )
+
+        recId++;
+
+        res.status(200).send(searches)
 
     },
     getRec: (req, res) => {

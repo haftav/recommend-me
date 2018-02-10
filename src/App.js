@@ -24,7 +24,8 @@ class App extends Component {
       titleType: '',
       recs: [],
       userRecs: [],
-      display: false
+      display: false,
+      submitClicked: false
     }
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
@@ -34,7 +35,6 @@ class App extends Component {
     this.handleNameClick = this.handleNameClick.bind(this);
 
   }
-
 
 
   handleClick() {
@@ -48,18 +48,21 @@ class App extends Component {
   }
 
   talkToServer(res) {
-    console.log(res);
     if (res.Similar.Results.length > 0) {
       let title = res.Similar.Info[0].Name;
-      console.log('state type: ' + this.state.titleType)
       let type = (this.state.titleType === '' ? 'all' : this.state.titleType);
       let text = res.Similar.Info[0].wTeaser;
-      console.log('type: ' + type)
-      console.log('text: ' + text)
+
       axios.post('/api/items', { title: title, type: type, text: text }).then(res => {
-        console.log(res);
+        console.log(res.data[res.data.length - 1].id);
+        this.setState({ id: res.data[res.data.length - 1].id });
       });
-      this.setState({ recs: res.Similar.Results, titleName: title, titleText: text, display: true})
+      this.setState({ 
+        recs: res.Similar.Results, 
+        titleName: title, 
+        titleText: text, 
+        display: true,
+        submitClicked: false})
 
     } else {
       this.setState({ recs: [], titleName: '', display: false})
@@ -94,7 +97,7 @@ class App extends Component {
             <DisplayTitle title={this.state.titleName} text={this.state.titleText}/>
             <ResultsContainer results={ this.state.recs }
                               onClick={ this.handleNameClick }/>
-            <RecsContainer />
+            <RecsContainer id={this.state.id}/>
           </div>
           :
           null
