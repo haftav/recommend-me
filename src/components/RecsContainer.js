@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import 'font-awesome/css/font-awesome.min.css';
+
 
 import ModalSearch from './ModalSearch.js';
 import ModalSubmit from './ModalSubmit.js';
@@ -166,7 +168,11 @@ class RecsContainer extends Component {
         return (
             <div className="recs-container">
                 <h2>Add Recommendation</h2>
-                <button onClick={this.handleClick}>Click to Add</button>
+                <button 
+                        onClick={this.handleClick}
+                        className="addButton">
+                    <i class="fa fa-plus"></i>
+                </button>
                 {
                     this.state.clicked
                     ?

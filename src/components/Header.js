@@ -2,9 +2,9 @@ import React from 'react';
 
 var Header = () => {
     return (
-        <div>
-            <h1>Looking for Recommendations?</h1>
-            <h3>Select a search genre below or search all media.</h3>
+        <div className="header">
+            <h1>Looking for Movie Recommendations?</h1>
+            <h3>SEARCH A MOVIE BELOW TO GET STARTED</h3>
         </div>
 
     )

@@ -1,6 +1,43 @@
 @import url('https://fonts.googleapis.com/css?family=EB+Garamond');
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+@import url('https://fonts.googleapis.com/css?family=Heebo:300');
+
+
 
 body p {
     font-family: 'EB Garamond', serif;
     font-size: 1.3em;
+}
+
+h1 {
+    font-family: 'Crimson Text', serif;
+    font-size: 50px;
+    font-weight: 100;
+}
+
+h3 {
+    font-family: 'Heebo', sans-serif;
+    letter-spacing: 0.25em;
+    font-size: 25px;
+}
+
+.result h3 {
+    font-size: 17px;
+    letter-spacing: 0.1em;
+}
+
+.result p {
+    font-family: 'Heebo', sans-serif;
+    font-size: 13px;
+}
+
+.recs-container h2 {
+    font-family: 'Heebo', sans-serif;
+    letter-spacing: 0.15em;
+    font-size: 25px;
+}
+
+.addButton {
+    font-size: 30px;
+    color: rgb(182, 179, 179);
 }

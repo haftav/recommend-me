@@ -25,7 +25,7 @@ class ResultsContainer extends Component {
                     })
         return (
             <div className="results-container">
-                <h3>Similar Results</h3>
+                <h3>SIMILAR RESULTS</h3>
                 <div className="results-display">
                     { results }
                 </div>
