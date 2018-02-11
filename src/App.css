@@ -19,6 +19,14 @@
 
 }
 
+input {
+  border-radius: 3px;
+  border: none;
+  color: rgb(133, 133, 133);
+  font-size: 15px;
+  background: rgb(50, 54, 65);
+}
+
 .App h1 {
   margin-top: 34px;
   margin-bottom: 20px;
@@ -130,7 +138,7 @@ button {
 
 .results-container {
   min-height: 250px;  
-  width: 60%;
+  width: 1100px;
   margin: 25px auto;
   overflow: hidden;
 }
@@ -190,37 +198,64 @@ button {
   border: 2px solid lightgray;
   border-radius: 5px;
   overflow: auto;
+  display: flex;
+  justify-content: space-between;
 }
 
-.rec > h1 {
-  width: 100px;
-  min-height: 150px;
-  font-size: 20px;
-  background: lightsalmon;
-  margin: 10px 10px;
+.rec-image {
+  margin: 5px;
   float: left;
 }
 
-.rec > p {
-  background: lightgray;
-  margin: 10px auto;
-  width: 60%;
-  text-align: left;
-  display: inline-block;
+.rec-image img {
+  height: 175px;
+}
 
+.rec-container-middle {
+  margin-left: -10px;
+  width: 300px;
+  word-wrap: normal;
+}
+
+.rec-container-middle > h1 {
+  font-size: 20px;
+  margin: 10px 10px;
+  text-align: left;
+}
+
+.rec-container-middle > p {
+  margin: 10px;
+  text-align: left;
+  font-weight: 200;
+  word-wrap: break-word;
+}
+
+.rec-container-middle input {
+  margin: 0px;
+  width: 300px;
+  height: 50%;
+  text-align: left;
   font-weight: 200;
 }
 
 .rec-container-right {
-  margin: 10px;
-  background: lightblue;
-  width: 100px;
-  min-height: 150px;
-  float: right;
+  margin-top: 10px;
+  width: 125px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
+}
+
+.time-name input {
+  margin-top: 10px;
+  margin-bottom: -15px;
+  width: 75px;
+  height: 20px;
+}
+
+.time-name p:last-of-type {
+  margin-top: 20px;
 }
 
 .modify-buttons button {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import 'font-awesome/css/font-awesome.min.css';
-
+import { tmdbKey } from '../key.js';
 
 import ModalSearch from './ModalSearch.js';
 import ModalSubmit from './ModalSubmit.js';
@@ -21,6 +21,7 @@ class RecsContainer extends Component {
             editClicked: false,
             recText: '',
             recName: '',
+            recImage: '',
             originalText: '',
             originalName: '',
             recTime: '',
@@ -37,6 +38,7 @@ class RecsContainer extends Component {
         this.handleEditClick = this.handleEditClick.bind(this);
         this.handleCancelClick = this.handleCancelClick.bind(this);
         this.handleDeleteClick = this.handleDeleteClick.bind(this);
+        this.displayRecPicture = this.displayRecPicture.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
@@ -62,10 +64,27 @@ class RecsContainer extends Component {
     }
 
     grabRecName(val) {
-        this.setState({ 
-            recName: val,
-            nameClicked: (this.state.nameClicked ? false : true )
-        })
+        this.displayRecPicture(val)
+            .then(image => {
+                console.log(image);
+                this.setState({ 
+                    recName: val,
+                    recImage: image,
+                    nameClicked: (this.state.nameClicked ? false : true )
+                })
+            })
+
+    }
+
+    displayRecPicture(title) {
+        return axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${tmdbKey}&query=${title}`).then(res => {
+            if (res.data.results[0]) {
+              return 'http://image.tmdb.org/t/p/w500' + res.data.results[0].poster_path;
+      
+            } else {
+              return null;
+            }
+          })
     }
 
     addToServer() {
@@ -73,6 +92,7 @@ class RecsContainer extends Component {
             title: this.state.recName, 
             text: this.state.recText,
             name: this.state.userName,
+            image: this.state.recImage
         }).then(res => {
             this.setState({ 
                 submitClicked: true, 
@@ -83,7 +103,7 @@ class RecsContainer extends Component {
     }
 
 
-    handleEditClick(key, text, name) {
+    handleEditClick(key, text, name, image) {
         const originalText = this.state.recText;
         const originalName = this.state.userName;
 
@@ -93,6 +113,7 @@ class RecsContainer extends Component {
             originalText: originalText,
             originalName: originalName,
             recText: text,
+            recName: image,
             userName: name
         })
     }
@@ -105,8 +126,8 @@ class RecsContainer extends Component {
 
 
 
-    handleSubmitClick(title, name, text, recId) {
-        axios.put(`/api/recommends/${this.props.id}`, { title, name, text, recId}).then(res => {
+    handleSubmitClick(title, name, text, image, recId) {
+        axios.put(`/api/recommends/${this.props.id}`, { title, name, text, image, recId}).then(res => {
             this.setState({ editClicked: false, recs: res.data, editId: null })
         })
     }
@@ -128,6 +149,7 @@ class RecsContainer extends Component {
              let title = el.title;
              let name = el.name;
              let text = el.text;
+             let image = el.image
 
             return (
                 el.recId === this.state.editId
@@ -135,6 +157,7 @@ class RecsContainer extends Component {
                 <Edit text={ this.state.recText }
                     title={ title }
                     name={ this.state.userName }
+                    image={ image }
                     recId={el.recId}
                     key={idx}
                     handleTextChange={this.handleTextChange}
@@ -145,6 +168,7 @@ class RecsContainer extends Component {
                 <Rec title={title} 
                     name={name} 
                     text={text}
+                    image={image}
                     recId={el.recId} 
                     id={this.props.id}
                     key={idx}
@@ -171,7 +195,7 @@ class RecsContainer extends Component {
                 <button 
                         onClick={this.handleClick}
                         className="addButton">
-                    <i class="fa fa-plus"></i>
+                    <i className="fa fa-plus"></i>
                 </button>
                 {
                     this.state.clicked
