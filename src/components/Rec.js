@@ -14,7 +14,7 @@ class Rec extends Component {
 
 
     render() {
-        let { title, name, text, handleEditClick, handleDeleteClick, image } = this.props;
+        let { title, name, text, handleEditClick, handleDeleteClick, image, time } = this.props;
         const submitted = (
                         <div className="rec">
                             <div className="rec-image">
@@ -28,10 +28,10 @@ class Rec extends Component {
                                 <div className="rec-container-right">
                                     <div className="time-name">
                                         <p>{ this.props.name }</p> 
-                                        <p>5/2/3</p>
+                                        <p>{time}</p>
                                     </div>
                                     <div className="modify-buttons">
-                                        <button onClick={() => handleEditClick(this.props.recId, text, name, image)}>Edit</button>
+                                        <button onClick={() => handleEditClick(this.props.recId, text, name, image, time)}>Edit</button>
                                         <button onClick={() => handleDeleteClick(this.props.recId)}>Delete</button>
                                     </div>
                                 </div>

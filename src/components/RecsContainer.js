@@ -7,6 +7,7 @@ import ModalSearch from './ModalSearch.js';
 import ModalSubmit from './ModalSubmit.js';
 import Rec from './Rec.js';
 import Edit from './Edit.js';
+import date from '../Date.js';
 
 class RecsContainer extends Component {
     constructor() {
@@ -88,11 +89,15 @@ class RecsContainer extends Component {
     }
 
     addToServer() {
+        let postTime = date();
+        console.log(postTime);
+
         axios.post(`/api/recommends/${this.props.id}`, {
             title: this.state.recName, 
             text: this.state.recText,
             name: this.state.userName,
-            image: this.state.recImage
+            image: this.state.recImage,
+            time: postTime
         }).then(res => {
             this.setState({ 
                 submitClicked: true, 
@@ -103,7 +108,7 @@ class RecsContainer extends Component {
     }
 
 
-    handleEditClick(key, text, name, image) {
+    handleEditClick(key, text, name, image, time) {
         const originalText = this.state.recText;
         const originalName = this.state.userName;
 
@@ -113,7 +118,7 @@ class RecsContainer extends Component {
             originalText: originalText,
             originalName: originalName,
             recText: text,
-            recName: image,
+            recImage: image,
             userName: name
         })
     }
@@ -126,8 +131,8 @@ class RecsContainer extends Component {
 
 
 
-    handleSubmitClick(title, name, text, image, recId) {
-        axios.put(`/api/recommends/${this.props.id}`, { title, name, text, image, recId}).then(res => {
+    handleSubmitClick(title, name, text, image, time, recId) {
+        axios.put(`/api/recommends/${this.props.id}`, { title, name, text, image, time, recId}).then(res => {
             this.setState({ editClicked: false, recs: res.data, editId: null })
         })
     }
@@ -149,7 +154,8 @@ class RecsContainer extends Component {
              let title = el.title;
              let name = el.name;
              let text = el.text;
-             let image = el.image
+             let image = el.image;
+             let time = el.time;
 
             return (
                 el.recId === this.state.editId
@@ -158,6 +164,7 @@ class RecsContainer extends Component {
                     title={ title }
                     name={ this.state.userName }
                     image={ image }
+                    time={ time }
                     recId={el.recId}
                     key={idx}
                     handleTextChange={this.handleTextChange}
@@ -169,6 +176,7 @@ class RecsContainer extends Component {
                     name={name} 
                     text={text}
                     image={image}
+                    time={ time }
                     recId={el.recId} 
                     id={this.props.id}
                     key={idx}

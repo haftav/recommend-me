@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Result from './Result.js';
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 class ResultsContainer extends Component {
     constructor() {
@@ -24,13 +25,13 @@ class ResultsContainer extends Component {
                             )              
                     })
         return (
-            <div className="results-container">
-                <h3>SIMILAR RESULTS</h3>
-                <div className="results-display">
-                    { results }
-                </div>
+                <div className="results-container">
+                    <h3>SIMILAR RESULTS</h3>
+                    <div className="results-display">
+                        { results }
+                    </div>
 
-            </div>
+                </div>
         )
     }
 }

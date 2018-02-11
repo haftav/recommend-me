@@ -4,6 +4,7 @@ import $ from 'jquery';
 import './fonts.css';
 import './App.css';
 import key, { tmdbKey } from './key.js';
+import CSSTransitionGroup from './react-transition-group/src/CSSTransition.js';
 
 
 
@@ -114,16 +115,17 @@ class App extends Component {
           <div>
             <DisplayTitle title={this.state.titleName} 
                           text={this.state.titleText}
-                          image={this.state.image}/>
+                          image={this.state.image}
+                          shouldDisplay={this.state.display}/>
             <ResultsContainer results={ this.state.recs }
                               onClick={ this.handleClick }
-                              findImage={this.getMoviePoster}/>
+                              findImage={this.getMoviePoster}
+                              shouldDisplay={this.state.display}/>
             <RecsContainer id={this.state.id}/>
           </div>
           :
           null
         }
-
       </div>
     );
   }

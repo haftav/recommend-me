@@ -32,12 +32,12 @@ module.exports = {
         res.status(200).send(test);
     },
     newRec: (req, res) => {
-        let { title, text, name, image } = req.body;
+        let { title, text, name, image, time } = req.body;
         let id = req.params.id;
         index = searches.findIndex((el) => el.id === Number(id));
 
         let recId = searches[index].recommends.length;
-        searches[index].recommends.push( { recId, title, name, text, image } )
+        searches[index].recommends.push( { recId, title, name, text, image, time } )
 
         res.status(200).send(searches[index].recommends)
 
@@ -54,7 +54,7 @@ module.exports = {
 
     },
     editRec: (req, res) => {
-        let { title, name, text, image, recId } = req.body;
+        let { title, name, text, image, time, recId } = req.body;
         let mainId = req.params.id
         console.log(text);
         console.log(mainId);
@@ -65,7 +65,7 @@ module.exports = {
 
         console.log('index :' + index)
 
-        searches[index].recommends[recId] = { title, name, text, image, recId }
+        searches[index].recommends[recId] = { title, name, text, image, time, recId }
         console.log('recommends: ' + searches[index])
         res.status(200).send(searches[index].recommends);
     },

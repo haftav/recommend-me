@@ -87,6 +87,7 @@ button {
 }
 
 .display-title {
+  transition: height 0.4s ease-in;
   width: 50%;
   min-height: 300px;
   margin: 40px auto 0px auto;
@@ -94,6 +95,8 @@ button {
   border-radius: 5px;
   position: relative;
 }
+
+
 
 .display-title h2 {
   margin: 0px auto 0px auto;
@@ -263,3 +266,23 @@ button {
   height: 25px;
   margin: 0px 15px 5px 15px;
 }
+
+
+.results-enter {
+  opacity: 0.01;
+}
+
+.results-enter.results-enter-active {
+  opacity: 1;
+  transition: opacity 0.4s ease-in;
+}
+
+.results-leave {
+  opacity: 1;
+}
+
+.results-leave.results-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
