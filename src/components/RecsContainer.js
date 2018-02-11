@@ -15,6 +15,7 @@ class RecsContainer extends Component {
 
         this.state = {
             recs: [],
+            recentList: [],
             clicked: false,
             nameClicked: false,
             searchClicked: false,
