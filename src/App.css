@@ -10,7 +10,7 @@
   min-height: 100vh;
   text-align: center;
   margin: auto;
-  background: linear-gradient(to top right, rgb(39, 69, 87), rgb(4, 9, 17));
+  background: linear-gradient(to top right, rgb(25, 45, 56) 0%, rgb(4, 9, 17) 100%);
   overflow: hidden;
   color: rgb(243, 243, 243);
 }
@@ -25,24 +25,36 @@
 
 .display-title {
   width: 50%;
-  min-height: 250px;
+  min-height: 300px;
   margin: 40px auto 0px auto;
   border: 1px solid lightgray;
   border-radius: 5px;
+  position: relative;
 }
 
 .display-title h2 {
+  margin: 0px auto 0px auto;
+  padding: 5px;
+  /* background: rgb(169, 203, 219); */
+  text-align: center;
+  width: 50%;
+  border: 1px solid lightgray;
+  border-right: none;
+  border-top: none;
+  border-left: none;
+}
+
+.display-title img {
+  height: 225px;
   margin: 25px;
-  width: 150px;
-  height: 200px;
-  background: rgb(169, 203, 219);
   float: left;
+
 }
 
 .display-title p {
-  margin: 10px 5px 0px 5px;
+  margin: 0px 5px 0px 5px;
   line-height: 1.6em;
-  padding: 25px;
+  padding: 10px 15px 25px 10px;
   color: rgb(211, 217, 221);
 }
 
@@ -53,7 +65,7 @@
 .results-container {
   min-height: 250px;  
   width: 60%;
-  margin: auto;
+  margin: 25px auto;
   overflow: hidden;
 }
 
@@ -104,7 +116,6 @@
 
 .rec {
   width: 600px;
-  min-height: 100px;
   position: relative;
   margin: 25px auto;
   border: 2px solid lightgray;
@@ -114,16 +125,17 @@
 
 .rec > h1 {
   width: 100px;
+  min-height: 150px;
   font-size: 20px;
   background: lightsalmon;
-  margin: 10px 0px;
+  margin: 10px 10px;
   float: left;
 }
 
-.rec h3 {
+.rec > p {
   background: lightgray;
-  margin: 20px auto;
-  width: 50%;
+  margin: 10px auto;
+  width: 60%;
   text-align: left;
   display: inline-block;
 
@@ -131,6 +143,7 @@
 }
 
 .rec-container-right {
+  margin: 10px;
   background: lightblue;
   width: 100px;
   min-height: 150px;

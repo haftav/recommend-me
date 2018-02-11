@@ -38,7 +38,6 @@ class RecsContainer extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        console.log("i'm getting props")
         axios.get(`api/recommends/${newProps.id}`).then(res => {
             this.setState({ recs: res.data })
         });
@@ -73,7 +72,6 @@ class RecsContainer extends Component {
             text: this.state.recText,
             name: this.state.userName,
         }).then(res => {
-            console.log(res.data);
             this.setState({ 
                 submitClicked: true, 
                 clicked: false,
@@ -84,7 +82,6 @@ class RecsContainer extends Component {
 
 
     handleEditClick(key, text, name) {
-        console.log('here');
         const originalText = this.state.recText;
         const originalName = this.state.userName;
 
@@ -100,7 +97,6 @@ class RecsContainer extends Component {
 
     handleDeleteClick(key) {
         axios.delete(`/api/recommends/${this.props.id}/${key}`).then(res => {
-            console.log(res.data);
             this.setState({ recs: res.data })
         })
     }
@@ -108,9 +104,7 @@ class RecsContainer extends Component {
 
 
     handleSubmitClick(title, name, text, recId) {
-        console.log('id: ' + recId)
         axios.put(`/api/recommends/${this.props.id}`, { title, name, text, recId}).then(res => {
-            console.log(res);
             this.setState({ editClicked: false, recs: res.data, editId: null })
         })
     }
@@ -170,7 +164,7 @@ class RecsContainer extends Component {
                             name={this.state.recName}
                             id={this.props.id} />
         return (
-            <div class="recs-container">
+            <div className="recs-container">
                 <h2>Add Recommendation</h2>
                 <button onClick={this.handleClick}>Click to Add</button>
                 {

@@ -18,7 +18,7 @@ class Rec extends Component {
         const submitted = (
                         <div className="rec">
                             <h1>{ title }</h1>
-                            <h3>{ this.props.text }</h3>
+                            <p>{ this.props.text }</p>
                                 <div className="rec-container-right">
                                     <div className="time-name">
                                         <p>{ this.props.name }</p> 

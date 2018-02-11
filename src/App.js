@@ -3,7 +3,7 @@ import axios from 'axios';
 import $ from 'jquery';
 import './fonts.css';
 import './App.css';
-import key from './key.js';
+import key, { tmdbKey } from './key.js';
 
 
 import Header from './components/Header.js';
@@ -23,6 +23,7 @@ class App extends Component {
       titleName: '',
       titleText: '',
       titleType: '',
+      image: '',
       recs: [],
       userRecs: [],
       display: false,
@@ -31,16 +32,16 @@ class App extends Component {
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleType = this.handleType.bind(this);
     this.talkToServer = this.talkToServer.bind(this);
     this.handleNameClick = this.handleNameClick.bind(this);
+    this.getMoviePoster = this.getMoviePoster.bind(this);
 
   }
 
-  handleClick() {
-    let type = (this.state.titleType !== '' ? `type=${this.state.titleType}&` : '')
+  handleClick(name) {
+    let type = 'movies';
 
-    $.ajax({url:`https://tastedive.com/api/similar?q=${this.state.searchString}&limit=4&verbose=1&${type}k=${key}`, 
+    $.ajax({url:`https://tastedive.com/api/similar?q=${name}&limit=4&verbose=1&movies&k=${key}`, 
     type: 'GET', 
     dataType: 'jsonp',
     success: this.talkToServer})
@@ -54,12 +55,15 @@ class App extends Component {
       let type = (this.state.titleType === '' ? 'all' : this.state.titleType);
       let text = res.Similar.Info[0].wTeaser;
 
-      axios.post('/api/items', { title: title, type: type, text: text }).then(res => {
-        console.log(res);
-        let index = res.data.findIndex((el) => el.title === title && el.type === type);
-        if (index !== -1) {
-          this.setState({ id: res.data[index].id });
-        }
+      this.getMoviePoster(title)
+        .then((image) => {
+          axios.post('/api/items', { title: title, type: type, text: text, image: image}).then(res => {
+            console.log(res);
+            let index = res.data.findIndex((el) => el.title === title && el.type === type);
+            if (index !== -1) {
+              this.setState({ id: res.data[index].id, image: res.data[index].image });
+            }
+        })
 
       });
       this.setState({ 
@@ -74,13 +78,20 @@ class App extends Component {
     }
   }
 
+  getMoviePoster(title) {
+    return axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${tmdbKey}&query=${title}`).then(res => {
+      if (res.data.results[0]) {
+        return 'http://image.tmdb.org/t/p/w500' + res.data.results[0].poster_path;
+
+      } else {
+        return null;
+      }
+    })
+  }
+
 
   handleSearchChange(val) {
     this.setState({ searchString: val })
-  }
-
-  handleType(val) {
-    this.setState({ titleType: (val === 'all' ? '' : val)})
   }
 
   handleNameClick(val) {
@@ -94,14 +105,18 @@ class App extends Component {
         <Search handleType={this.handleType}
                 handleClick={this.handleClick}
                 handleSearchChange={this.handleSearchChange} 
-                buttonText="Search"/>
+                buttonText="Search"
+                name={this.state.searchString}/>
         {
           this.state.display
           ?
           <div>
-            <DisplayTitle title={this.state.titleName} text={this.state.titleText}/>
+            <DisplayTitle title={this.state.titleName} 
+                          text={this.state.titleText}
+                          image={this.state.image}/>
             <ResultsContainer results={ this.state.recs }
-                              onClick={ this.handleNameClick }/>
+                              onClick={ this.handleClick }
+                              findImage={this.getMoviePoster}/>
             <RecsContainer id={this.state.id}/>
           </div>
           :

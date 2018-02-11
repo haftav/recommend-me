@@ -16,13 +16,13 @@ class ResultsContainer extends Component {
 
     render() {
         const results = this.props.results.map((el, idx) => {
-            return (
-                <Result key={idx} 
-                        name={ el.Name } 
-                        type={ el.Type } 
-                        onClick={this.props.onClick}/>
-            )
-        });
+                            return (
+                                <Result key={idx} 
+                                        name={ el.Name } 
+                                        type={ el.Type }
+                                        onClick={this.props.onClick}/>
+                            )              
+                    })
         return (
             <div className="results-container">
                 <h3>Similar Results</h3>

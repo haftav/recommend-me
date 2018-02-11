@@ -19,12 +19,13 @@ var test = {
 
 module.exports = {
     newSearch: (req, res) => {
-    let { title, type, text } = req.body;
+    let { title, type, text, image } = req.body;
     let index = searches.findIndex((el) => (el.title === title && el.type === type));
         if (index === -1) {
-            searches.push({ id: searchId, title, type, text, recommends: [] })
+            searches.push({ id: searchId, title, type, text, image, recommends: [] })
             searchId++;
         }
+        console.log(searches[0])
         res.status(200).send(searches);
     },
     getSearch: (req, res) => {

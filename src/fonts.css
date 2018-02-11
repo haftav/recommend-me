@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=EB+Garamond');
 
-body {
+body p {
     font-family: 'EB Garamond', serif;
     font-size: 1.3em;
 }
