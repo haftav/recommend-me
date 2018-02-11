@@ -56,3 +56,13 @@ h3 {
     font-family: 'EB Garamond', serif;
     font-weight: 100;
 }
+
+.rec-container-right p:first-of-type {
+    font-family: 'Heebo', sans-serif;
+    font-size: 17px;
+}
+
+.rec-container-right p:last-of-type {
+    font-family: 'Heebo', sans-serif;
+    font-size: 15px;
+}

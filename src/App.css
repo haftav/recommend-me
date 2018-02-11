@@ -19,6 +19,11 @@
 
 }
 
+img {
+  border: 1px solid lightgray;
+  border-radius: 3px;
+}
+
 input {
   border-radius: 3px;
   border: none;
@@ -40,26 +45,57 @@ input {
   height: 45px;
   width: 350px;
   margin: auto;
-  position: relative
+  position: relative;
+  vertical-align: middle;
 }
 
 .search input {
   height: 45px;
   width: 335px;
-  margin: 0px;
-  position: absolute;
-  left: 0;
-  background: rgb(50, 54, 65);
+  margin: 0px auto;
+  /* position: absolute;
+  left: 0; */
+  background: rgba(50, 54, 65, 0.603);
   border-radius: 3px;
   border: none;
   color: rgb(133, 133, 133);
   font-size: 15px;
-  padding-left: 15px;
+  transition: all .2s ease-in;
+  padding-left: 40px;
+  padding-right: 10px;
+}
+
+.search .icon {
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 13px;
+  z-index: 1;
+  color: #4f5b66;
+  font-size: 16px;
+}
+
+.search input:hover {
+  cursor: pointer;
+  background:  rgb(50, 54, 65)
 }
 
 .search input::placeholder {
-  color: rgb(133, 133, 133);
-  font-size: 15px;
+  vertical-align: middle;
+  color: #4f5b66;
+  font-size: 14px;
+}
+
+
+.search input:active, .search input:focus {
+  border-radius: 3px;
+  text-align: left;
+  padding-left: 40px;
+  cursor: text;
+  background:  rgb(50, 54, 65);
+  outline: none;
+  color: rgb(243, 243, 243);
+
+
 }
 
 button {
@@ -94,6 +130,7 @@ button {
   border: 1px solid lightgray;
   border-radius: 5px;
   position: relative;
+
 }
 
 
@@ -113,6 +150,7 @@ button {
 .display-title img {
   height: 225px;
   margin: 25px;
+  margin-left: 30px;
   float: left;
   border-radius: 3px;
 
@@ -134,9 +172,25 @@ button {
 }
 
 .addButton {
+  opacity: 1;
   width: 100px;
   height: 40px;
   margin-bottom: 25px;
+  color: rgb(155, 155, 155);
+  transition: color .1s ease-in;
+}
+
+.addButton:hover {
+  color: rgb(192, 191, 191);
+
+}
+
+.addButton:focus {
+  outline: none;
+}
+
+.addButton:active {
+  opacity: 0.9;
 }
 
 .results-container {
@@ -198,11 +252,13 @@ button {
   width: 600px;
   position: relative;
   margin: 25px auto;
-  border: 2px solid lightgray;
+  padding: 15px;
   border-radius: 5px;
   overflow: auto;
   display: flex;
   justify-content: space-between;
+  background: #3c4d57;
+  
 }
 
 .rec-image {
@@ -247,18 +303,24 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: center;
 }
 
 .time-name input {
-  margin-top: 10px;
+  margin-top: 0px;
   margin-bottom: -15px;
   width: 75px;
   height: 20px;
 }
 
+.time-name p:first-of-type {
+  margin-top: 0px;
+}
+
 .time-name p:last-of-type {
   margin-top: 20px;
+  font-size: 15px;
+  width: 100px;
 }
 
 .modify-buttons button {
@@ -267,22 +329,4 @@ button {
   margin: 0px 15px 5px 15px;
 }
 
-
-.results-enter {
-  opacity: 0.01;
-}
-
-.results-enter.results-enter-active {
-  opacity: 1;
-  transition: opacity 0.4s ease-in;
-}
-
-.results-leave {
-  opacity: 1;
-}
-
-.results-leave.results-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
-}
 

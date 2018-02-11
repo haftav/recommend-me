@@ -37,21 +37,31 @@ class App extends Component {
     this.talkToServer = this.talkToServer.bind(this);
     this.handleNameClick = this.handleNameClick.bind(this);
     this.getMoviePoster = this.getMoviePoster.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
 
   }
 
   handleClick(name) {
     let type = 'movies';
 
-    $.ajax({url:`https://tastedive.com/api/similar?q=${name}&limit=4&verbose=1&movies&k=${key}`, 
-    type: 'GET', 
-    dataType: 'jsonp',
-    success: this.talkToServer})
+    // $.ajax({url:`https://tastedive.com/api/similar?q=${name}&limit=4&verbose=1&movies&k=${key}`, 
+    // type: 'GET', 
+    // dataType: 'jsonp',
+    // success: this.talkToServer})
 
   }
 
-  talkToServer(res) {
+  handleKeyPress(e, name) {
+    if (e.key === 'Enter') {
+      let type = 'movies';
+      $.ajax({url:`https://tastedive.com/api/similar?q=${name}&limit=4&verbose=1&movies&k=${key}`, 
+      type: 'GET', 
+      dataType: 'jsonp',
+      success: this.talkToServer})
+    }
+  }
 
+  talkToServer(res) {
     if (res.Similar.Results.length > 0) {
       let title = res.Similar.Info[0].Name;
       let type = (this.state.titleType === '' ? 'all' : this.state.titleType);
@@ -107,6 +117,7 @@ class App extends Component {
         <Search handleType={this.handleType}
                 handleClick={this.handleClick}
                 handleSearchChange={this.handleSearchChange} 
+                handleKeyPress={this.handleKeyPress}
                 buttonText="Search"
                 name={this.state.searchString}/>
         {
