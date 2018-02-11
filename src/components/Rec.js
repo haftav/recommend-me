@@ -31,8 +31,8 @@ class Rec extends Component {
                                         <p>{time}</p>
                                     </div>
                                     <div className="modify-buttons">
-                                        <button onClick={() => handleEditClick(this.props.recId, text, name, image, time)}>Edit</button>
-                                        <button onClick={() => handleDeleteClick(this.props.recId)}>Delete</button>
+                                        <button onClick={() => handleEditClick(this.props.recId, text, name, image, time)}>EDIT</button>
+                                        <button onClick={() => handleDeleteClick(this.props.recId)}>DELETE</button>
                                     </div>
                                 </div>
 

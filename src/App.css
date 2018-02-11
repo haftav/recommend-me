@@ -261,13 +261,9 @@ button {
   
 }
 
-.rec-image {
-  margin: 5px;
-  float: left;
-}
 
 .rec-image img {
-  height: 175px;
+  height: 125px;
 }
 
 .rec-container-middle {
@@ -289,12 +285,28 @@ button {
   word-wrap: break-word;
 }
 
-.rec-container-middle input {
+.rec-container-middle textarea {
   margin: 0px;
-  width: 300px;
-  height: 50%;
+  width: 100%;
+  min-height: 60%;
   text-align: left;
   font-weight: 200;
+  background:  rgb(50, 54, 65);
+  color: rgb(133, 133, 133);
+  border-radius: 3px;
+  padding-left: 10px;
+  border: none;
+  transition: all .2s ease-in;
+}
+
+.rec-container-middle textarea:hover{
+  background: rgba(50, 54, 65, 0.603);
+}
+
+.rec-container-middle textarea:focus {
+  background: rgba(50, 54, 65, 0.603);
+  outline: none;
+  color: rgb(243, 243, 243);
 }
 
 .rec-container-right {
@@ -304,17 +316,23 @@ button {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  background: rgb(25, 45, 56);
+  border-radius: 3px;
+  padding-top: 10px;
+  padding-bottom: 10px; 
 }
 
 .time-name input {
   margin-top: 0px;
-  margin-bottom: -15px;
-  width: 75px;
-  height: 20px;
+  width: 80%;
+  height: 25px;
+  text-align: center;
 }
 
 .time-name p:first-of-type {
   margin-top: 0px;
+  margin: auto;
+  text-align: center;
 }
 
 .time-name p:last-of-type {
@@ -323,10 +341,26 @@ button {
   width: 100px;
 }
 
+.modify-buttons {
+  margin-top: 15px;
+}
+
 .modify-buttons button {
-  width: 50px;
+  width: 65px;
   height: 25px;
   margin: 0px 15px 5px 15px;
+  background: rgb(61, 66, 80);
+  color: rgb(243, 243, 243);
+  transition: all .2s ease-in;
 }
+
+.modify-buttons button:hover {
+  background: rgb(69, 75, 88);
+}
+
+.modify-buttons button:focus {
+  outline: none;
+}
+
 
 

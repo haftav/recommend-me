@@ -12,7 +12,7 @@ var Edit = ({ text, name, title, recId, image, time,
         </div>
         <div className="rec-container-middle">
             <h1>{ title }</h1>
-            <input value={ text } onChange={(e) => handleTextChange(e.target.value)}/>
+            <textarea value={ text } onChange={(e) => handleTextChange(e.target.value)}/>
         </div>
 
         <div className="rec-container-right">
@@ -21,8 +21,8 @@ var Edit = ({ text, name, title, recId, image, time,
                 <p>{time}</p>
             </div>
             <div className="modify-buttons">
-                <button onClick={() => handleSubmitClick(title, name, text, image, time, recId)}>Submit</button>
-                <button onClick={() => handleCancelClick()}>Cancel</button>
+                <button onClick={() => handleSubmitClick(title, name, text, image, time, recId)}>SUBMIT</button>
+                <button onClick={() => handleCancelClick()}>CANCEL</button>
             </div>
         </div>
 
