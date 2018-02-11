@@ -19,6 +19,7 @@
 
 }
 
+
 img {
   border: 1px solid lightgray;
   border-radius: 3px;
@@ -31,6 +32,35 @@ input {
   color: rgb(133, 133, 133);
   font-size: 15px;
   background: rgb(50, 54, 65);
+}
+
+.recent-list {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  width: 17%;
+}
+
+.recent-list h2 {
+  margin: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(243, 243, 243);
+}
+.recent-list li {
+  list-style-type: none;
+  background: rgb(61, 66, 80);
+  color: rgb(243, 243, 243);
+  margin: 17px auto;
+  padding: 10px;
+  width: 60%;
+  border-radius: 3px;
+  transition: all 0.1s ease-in;
+}
+
+.recent-list li:hover {
+  width: 65%;
+  cursor: pointer;
+  background: rgb(69, 75, 88);
 }
 
 .App h1 {
@@ -211,6 +241,7 @@ button {
 
 .results-display { 
   width: 75%;
+  min-height: 265px;
   margin: auto;
   display: flex;
   justify-content: center;
@@ -229,6 +260,7 @@ button {
   position: relative;
   border-radius: 3px;
   box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 15px 0 rgba(0, 0, 0, 0.19);
+  transition: all .2s ease-in;
 }
 
 .result h3, .result p {
@@ -241,6 +273,10 @@ button {
   position: absolute;
   bottom: 0;
   right: -10px;
+}
+
+.result:hover {
+  height: 205px;
 }
 
 .result:hover, .result:visited,

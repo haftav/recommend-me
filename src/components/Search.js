@@ -10,6 +10,7 @@ class Search extends Component {
                 <input
                         type="search" 
                         placeholder="Search..."
+                        value={this.props.name}
                         onChange={(e) => this.props.handleSearchChange(e.target.value)}
                         onKeyPress={(e) => this.props.handleKeyPress(e, this.props.name)}/>
                 {/* <button onClick={() => this.props.handleClick(this.props.name)}><i className="fa fa-search"></i></button>  */}

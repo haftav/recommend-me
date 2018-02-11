@@ -13,6 +13,7 @@ import Search from './components/Search.js';
 import ResultsContainer from './components/ResultsContainer.js';
 import DisplayTitle from './components/DisplayTitle';
 import RecsContainer from './components/RecsContainer.js';
+import RecentList from './components/RecentList.js';
 
 class App extends Component {
   constructor() {
@@ -44,10 +45,10 @@ class App extends Component {
   handleClick(name) {
     let type = 'movies';
 
-    // $.ajax({url:`https://tastedive.com/api/similar?q=${name}&limit=4&verbose=1&movies&k=${key}`, 
-    // type: 'GET', 
-    // dataType: 'jsonp',
-    // success: this.talkToServer})
+    $.ajax({url:`https://tastedive.com/api/similar?q=${name}&limit=4&verbose=1&movies&k=${key}`, 
+    type: 'GET', 
+    dataType: 'jsonp',
+    success: this.talkToServer})
 
   }
 
@@ -82,7 +83,8 @@ class App extends Component {
         recs: res.Similar.Results, 
         titleName: title, 
         titleText: text, 
-        display: true
+        display: true,
+        searchString: ''
       })
 
     } else {
@@ -113,6 +115,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <RecentList name={this.state.titleName} 
+                    handleClick={this.handleClick}/>
         <Header /> 
         <Search handleType={this.handleType}
                 handleClick={this.handleClick}

@@ -29,7 +29,7 @@ module.exports = {
         res.status(200).send(searches);
     },
     getSearch: (req, res) => {
-        res.status(200).send(test);
+        res.status(200).send(searches);
     },
     newRec: (req, res) => {
         let { title, text, name, image, time } = req.body;
