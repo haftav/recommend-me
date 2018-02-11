@@ -22,6 +22,7 @@
 img {
   border: 1px solid lightgray;
   border-radius: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 input {
@@ -176,13 +177,14 @@ button {
   width: 100px;
   height: 40px;
   margin-bottom: 25px;
-  color: rgb(155, 155, 155);
-  transition: color .1s ease-in;
+  background: rgb(61, 66, 80);
+  color: rgb(192, 191, 191);
+  transition: all .1s ease-in;
 }
 
 .addButton:hover {
-  color: rgb(192, 191, 191);
-
+  color: rgb(243, 243, 243);
+  background: rgb(69, 75, 88);
 }
 
 .addButton:focus {
@@ -226,6 +228,7 @@ button {
   justify-content: flex-start;
   position: relative;
   border-radius: 3px;
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 15px 0 rgba(0, 0, 0, 0.19);
 }
 
 .result h3, .result p {
@@ -244,6 +247,64 @@ button {
 .result:link {
   text-decoration: none;
   color: rgb(243, 243, 243);
+}
+
+
+
+
+.modal-submit h4 {
+  margin: 25px;
+}
+
+.text-input {
+  width: 25%;
+  height: 75px;
+  background: rgba(50, 54, 65, 0.603);
+  color: rgb(133, 133, 133);
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  font-size: 17px;
+}
+
+.text-input:hover {
+  background:  rgb(50, 54, 65);
+}
+
+.text-input:focus {
+  background:  rgb(50, 54, 65);
+  outline: none;
+  color: rgb(243, 243, 243);
+}
+
+.name-input {
+  height: 30px;
+  width: 125px;
+  padding-left: 10px;
+  background: rgba(50, 54, 65, 0.603);
+}
+
+.name-input:hover {
+  background:  rgb(50, 54, 65);
+}
+
+.name-input:focus {
+  background:  rgb(50, 54, 65);
+  outline: none;
+  color: rgb(243, 243, 243);
+}
+
+.modal-submit button {
+  background: rgb(61, 66, 80);
+  color: rgb(243, 243, 243);
+  width: 75px;
+  height: 30px;
+  font-size: 17px;
+  padding: 2px;
+}
+
+.modal-submit button:hover {
+  background: rgb(69, 75, 88);
 }
 
 
@@ -273,12 +334,14 @@ button {
 }
 
 .rec-container-middle > h1 {
-  font-size: 20px;
   margin: 10px 10px;
   text-align: left;
+  border-bottom: 1px solid rgb(243, 243, 243);
+  padding-bottom: 5px;
 }
 
 .rec-container-middle > p {
+  padding-top: 5px;
   margin: 10px;
   text-align: left;
   font-weight: 200;
@@ -295,6 +358,7 @@ button {
   color: rgb(133, 133, 133);
   border-radius: 3px;
   padding-left: 10px;
+  padding-top: 5px;
   border: none;
   transition: all .2s ease-in;
 }
@@ -323,10 +387,23 @@ button {
 }
 
 .time-name input {
+  transition: all .2s ease-in;
   margin-top: 0px;
   width: 80%;
   height: 25px;
   text-align: center;
+  background: rgb(61, 66, 80);
+
+}
+
+.time-name input:hover {
+  background: rgb(69, 75, 88);
+}
+
+.time-name input:focus {
+  background: rgb(69, 75, 88);
+  outline: none;
+  color: rgb(243, 243, 243);
 }
 
 .time-name p:first-of-type {
