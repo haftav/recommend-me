@@ -155,11 +155,15 @@ class RecsContainer extends Component {
     }
 
     handleUpvote(recId) {
-        axios.put('')
+        axios.put(`/api/recommends/${this.props.id}/${recId}/up`).then(res => {
+            this.setState({ recs: res.data });
+        })
     }
 
     handleDownvote(recId) {
-        
+        axios.put(`/api/recommends/${this.props.id}/${recId}/down`).then(res => {
+            this.setState({ recs: res.data });
+        })
     }
 
 
@@ -200,7 +204,9 @@ class RecsContainer extends Component {
                     key={idx}
                     editClicked={this.state.editClicked}
                     handleEditClick={this.handleEditClick}
-                    handleDeleteClick={this.handleDeleteClick} />
+                    handleDeleteClick={this.handleDeleteClick}
+                    handleUpvote={this.handleUpvote}
+                    handleDownvote={this.handleDownvote} />
             )
             
 

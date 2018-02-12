@@ -88,7 +88,7 @@ module.exports = {
         const mainId = req.params.mainId;
         const recId = req.params.recId;
 
-        const index = searchs[mainId].recommends.findIndex((el => el.recId === Number(recId)))
+        const index = searches[mainId].recommends.findIndex((el => el.recId === Number(recId)))
 
         searches[mainId].recommends[index].score++;
 
@@ -98,9 +98,11 @@ module.exports = {
         const mainId = req.params.mainId;
         const recId = req.params.recId;
 
-        const index = searchs[mainId].recommends.findIndex((el => el.recId === Number(recId)))
+        const index = searches[mainId].recommends.findIndex((el => el.recId === Number(recId)))
 
-        searches[mainId].recommends[index].score++;
+        if (searches[mainId].recommends[index].score > 0) {
+            searches[mainId].recommends[index].score--;
+        }
 
         res.status(200).send(searches[mainId].recommends);
     }

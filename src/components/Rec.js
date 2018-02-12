@@ -14,7 +14,8 @@ class Rec extends Component {
 
 
     render() {
-        let { title, name, text, handleEditClick, handleDeleteClick, image, time, score} = this.props;
+        let { title, name, text, handleEditClick, handleUpvote, handleDownvote,
+            handleDeleteClick, image, time, score } = this.props;
         const submitted = (
                         <div className="rec">
                             <div className="rec-image">
@@ -36,9 +37,13 @@ class Rec extends Component {
                                 </div>
                             </div>
                             <div className="score-buttons">
-                                <button>Up</button>
-                                <p className="score">{score}</p>
-                                <button>Down</button>
+                                <i className="fa fa-chevron-circle-up" 
+                                    onClick={() => handleUpvote(this.props.recId)}></i>
+                                {/* <button onClick={() => handleUpvote(this.props.recId)}>Up</button> */}
+                                <p className="score">{ score }</p>
+                                <i className="fa fa-chevron-circle-down" 
+                                    onClick={() => handleDownvote(this.props.recId)}></i>
+                                {/* <button onClick={() => handleDownvote(this.props.recId)}>Down</button> */}
                             </div>
 
                         </div>

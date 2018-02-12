@@ -15,7 +15,7 @@ app.post('/api/recommends/:id', ctrl.newRec);
 app.put('/api/recommends/:id', ctrl.editRec);
 app.delete('/api/recommends/:mainId/:recId', ctrl.deleteRec)
 
-app.put('/api/recommends/:mainId/:recId', ctrl.upVote)
-app.put('/api/recommends/:mainId/:recId', ctrl.downVote)
+app.put('/api/recommends/:mainId/:recId/up', ctrl.upVote)
+app.put('/api/recommends/:mainId/:recId/down', ctrl.downVote)
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
