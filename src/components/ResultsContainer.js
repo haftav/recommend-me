@@ -17,13 +17,20 @@ class ResultsContainer extends Component {
 
     render() {
         const results = this.props.results.map((el, idx) => {
-                            return (
-                                <Result key={idx} 
-                                        name={ el.Name } 
-                                        type={ el.Type }
-                                        onClick={this.props.onClick}/>
-                            )              
+                            // return this.props.findImage(el.Name).then(image => {
+                                return (
+                                    <Result key={idx} 
+                                            name={ el.Name } 
+                                            type={ el.Type }
+                                            // image={ image }
+                                            onClick={this.props.onClick}/>
+                                )      
+                            // })
                     })
+
+        // Promise.all(results).then(res => {
+        //     console.log(JSON.stringify(res));
+        // })
         return (
                 <div className="results-container">
                     <h3>SIMILAR RESULTS</h3>

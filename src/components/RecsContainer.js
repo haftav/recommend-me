@@ -209,9 +209,10 @@ class RecsContainer extends Component {
                     handleDownvote={this.handleDownvote}
                     handleMovieClick={this.props.handleClick} />
             )
-            
-
          });
+         recommends.sort(function(a, b) {
+             return b.props.score - a.props.score;
+         })
          console.log(recommends);
         const modalSearch = <ModalSearch  
                             grabRecName={this.grabRecName}
