@@ -194,8 +194,10 @@ button {
   color: rgb(211, 217, 221);
 }
 
+/* CHECK THIS OUT */
+
 .recs-container {
-  margin: 25px;
+  margin: 25px 0px;
 }
 
 .recs-container h2 {
@@ -226,10 +228,10 @@ button {
 }
 
 .results-container {
-  min-height: 250px;  
-  width: 1100px;
   margin: 25px auto;
   overflow: visible;
+  width: max-content;
+
 }
 
 .results-container > h3 {
@@ -240,44 +242,43 @@ button {
 }
 
 .results-display { 
-  width: 75%;
-  min-height: 300px;
   margin: auto;
   display: flex;
   justify-content: center;
   background: #3c4d57;
   border-radius: 5px;
-  padding: 10px;
+  padding: 25px;
   overflow: auto;
+  width: max-content;
 }
 
 .result {
-  margin: 25px;
-  width: 150px;
-  height: 200px;
-  background: rgb(169, 203, 219);
-  display: flex;
+  padding: 0px;
+  margin: 0px 25px;
+  width: 200px;
+  /* display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: flex-start; */
   position: relative;
   border-radius: 3px;
-  cursor: pointer;
-  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 15px 0 rgba(0, 0, 0, 0.19);
   transition: all .2s ease-in;
-
 }
 
 .result img {
   height: 200px;
   padding: 1px;
+  cursor: pointer;
+  transition: height .2s ease-in;
 }
+
 
 .result h3, .result p {
   width: 125px;
-  text-align: left;
+  text-align: center;
   margin-left: 10px;
   margin-top: 10px;
-  padding: 10px 0px;
+  padding: 10px 0px 0px 0px;
+  margin-bottom: 0px;
 }
 
 .result p {
@@ -285,19 +286,6 @@ button {
   bottom: 0;
   right: -10px;
 }
-
-.result:hover {
-  height: 205px;
-}
-
-.result:hover, .result:visited,
-.result:link {
-  text-decoration: none;
-  color: rgb(243, 243, 243);
-}
-
-
-
 
 .modal-submit h4 {
   margin: 25px;

@@ -217,7 +217,8 @@ class RecsContainer extends Component {
                             grabRecName={this.grabRecName}
                             nameClicked={this.state.nameClicked}
                             searchClicked={this.state.searchClicked} 
-                            modalOpen={this.state.clicked}/>;
+                            modalOpen={this.state.clicked}
+                            findImage={this.props.findImage}/>
         const modalSubmit = <ModalSubmit handleTextChange={this.handleTextChange}
                             handleNameChange={this.handleNameChange}
                             handleClick={this.addToServer}
