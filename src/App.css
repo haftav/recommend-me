@@ -229,7 +229,7 @@ button {
   min-height: 250px;  
   width: 1100px;
   margin: 25px auto;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .results-container > h3 {
@@ -241,12 +241,14 @@ button {
 
 .results-display { 
   width: 75%;
-  min-height: 265px;
+  min-height: 300px;
   margin: auto;
   display: flex;
   justify-content: center;
   background: #3c4d57;
   border-radius: 5px;
+  padding: 10px;
+  overflow: auto;
 }
 
 .result {
@@ -262,12 +264,20 @@ button {
   cursor: pointer;
   box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 15px 0 rgba(0, 0, 0, 0.19);
   transition: all .2s ease-in;
+
+}
+
+.result img {
+  height: 200px;
+  padding: 1px;
 }
 
 .result h3, .result p {
   width: 125px;
   text-align: left;
   margin-left: 10px;
+  margin-top: 10px;
+  padding: 10px 0px;
 }
 
 .result p {

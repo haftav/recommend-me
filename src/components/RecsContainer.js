@@ -71,7 +71,6 @@ class RecsContainer extends Component {
     grabRecName(val) {
         this.displayRecPicture(val)
             .then(image => {
-                console.log(image);
                 this.setState({ 
                     recName: val,
                     recImage: image,

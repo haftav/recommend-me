@@ -7,7 +7,8 @@ class ResultsContainer extends Component {
         super();
 
         this.state = {
-            resultList: []
+            resultList: [],
+            imageList: []
         }
     }
 
@@ -16,26 +17,33 @@ class ResultsContainer extends Component {
     }
 
     render() {
-        const results = this.props.results.map((el, idx) => {
-                            // return this.props.findImage(el.Name).then(image => {
-                                return (
-                                    <Result key={idx} 
-                                            name={ el.Name } 
-                                            type={ el.Type }
-                                            // image={ image }
-                                            onClick={this.props.onClick}/>
-                                )      
-                            // })
+        const images = this.props.results.map((el, idx) => {
+                            return this.props.findImage(el.Name).then(image => {
+                                return image  
+                            })
                     })
 
-        // Promise.all(results).then(res => {
-        //     console.log(JSON.stringify(res));
-        // })
+        Promise.all(images).then(data => {
+            this.setState({ imageList: data })
+        })
+
+        console.log(this.state.imageList);
         return (
                 <div className="results-container">
                     <h3>SIMILAR RESULTS</h3>
                     <div className="results-display">
-                        { results }
+                    {
+                        this.props.results.map((el, idx) => {
+                            return (
+                                <Result key={idx} 
+                                        name={ el.Name } 
+                                        type={ el.Type }
+                                        image={this.state.imageList[idx]}
+                                        onClick={this.props.onClick}/>
+                            )
+                        })
+                    }
+
                     </div>
 
                 </div>
