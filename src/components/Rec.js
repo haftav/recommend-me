@@ -19,7 +19,7 @@ class Rec extends Component {
         const submitted = (
                         <div className="rec">
                             <div className="rec-image">
-                                <img src={ image } alt={ title } />
+                                <img src={ image } alt={ title } onClick={() => this.props.handleMovieClick(title)}/>
                             </div>
                             <div className="rec-container-middle">
                                 <h1>{ title }</h1>
@@ -39,11 +39,9 @@ class Rec extends Component {
                             <div className="score-buttons">
                                 <i className="fa fa-chevron-circle-up" 
                                     onClick={() => handleUpvote(this.props.recId)}></i>
-                                {/* <button onClick={() => handleUpvote(this.props.recId)}>Up</button> */}
                                 <p className="score">{ score }</p>
                                 <i className="fa fa-chevron-circle-down" 
                                     onClick={() => handleDownvote(this.props.recId)}></i>
-                                {/* <button onClick={() => handleDownvote(this.props.recId)}>Down</button> */}
                             </div>
 
                         </div>

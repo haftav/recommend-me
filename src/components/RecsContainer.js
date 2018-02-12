@@ -206,7 +206,8 @@ class RecsContainer extends Component {
                     handleEditClick={this.handleEditClick}
                     handleDeleteClick={this.handleDeleteClick}
                     handleUpvote={this.handleUpvote}
-                    handleDownvote={this.handleDownvote} />
+                    handleDownvote={this.handleDownvote}
+                    handleMovieClick={this.props.handleClick} />
             )
             
 

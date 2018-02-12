@@ -302,6 +302,7 @@ button {
   border-radius: 3px;
   padding: 10px;
   font-size: 17px;
+  transition: all .1s ease-in;
 }
 
 .text-input:hover {
@@ -319,6 +320,7 @@ button {
   width: 125px;
   padding-left: 10px;
   background: rgba(50, 54, 65, 0.603);
+  transition: all .1s ease-in;
 }
 
 .name-input:hover {
@@ -338,6 +340,7 @@ button {
   height: 30px;
   font-size: 17px;
   padding: 2px;
+  transition: all .1s ease-in;
 }
 
 .modal-submit button:hover {
@@ -365,6 +368,8 @@ button {
 
 .rec-image img {
   height: 125px;
+  padding: 2px;
+  cursor: pointer;
 }
 
 .rec-container-middle {
@@ -479,5 +484,22 @@ button {
   outline: none;
 }
 
+.score-buttons {
+  width: 20px;
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
+}
 
+.score-buttons p {
+  margin: 15px 0px 15px 0px;
+  color: rgb(243, 243, 243);
+}
+
+.score-buttons i {
+  color: rgb(243, 243, 243);
+  cursor: pointer;
+}

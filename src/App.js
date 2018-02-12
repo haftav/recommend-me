@@ -136,7 +136,8 @@ class App extends Component {
                               onClick={ this.handleClick }
                               findImage={this.getMoviePoster}
                               shouldDisplay={this.state.display}/>
-            <RecsContainer id={this.state.id}/>
+            <RecsContainer id={this.state.id}
+                            handleClick={this.handleClick}/>
           </div>
           :
           null

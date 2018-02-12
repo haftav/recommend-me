@@ -26,9 +26,9 @@ var Edit = ({ text, name, title, recId, image, time, score,
             </div>
         </div>
         <div className="score-buttons">
-            <button>Up</button>
-            <p className="score">{score}</p>
-            <button>Down</button>
+            <i className="fa fa-chevron-circle-up" ></i>
+            <p className="score">{ score }</p>
+            <i className="fa fa-chevron-circle-down" ></i>
         </div>
 
     </div>        
