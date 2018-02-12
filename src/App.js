@@ -135,7 +135,8 @@ class App extends Component {
             <ResultsContainer results={ this.state.recs }
                               onClick={ this.handleClick }
                               findImage={this.getMoviePoster}
-                              shouldDisplay={this.state.display}/>
+                              shouldDisplay={this.state.display}
+                              text="SIMILAR RESULTS"/>
             <RecsContainer id={this.state.id}
                             handleClick={this.handleClick}
                             findImage={this.getMoviePoster}/>

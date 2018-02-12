@@ -30,7 +30,7 @@ class ResultsContainer extends Component {
         console.log(this.state.imageList);
         return (
                 <div className="results-container">
-                    <h3>SIMILAR RESULTS</h3>
+                    <h3>{ this.props.text }</h3>
                     <div className="results-display">
                     {
                         this.props.results.map((el, idx) => {

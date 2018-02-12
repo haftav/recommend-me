@@ -83,7 +83,8 @@ class ModalSearch extends Component {
         )
         const displayResults = <ResultsContainer results={ this.state.searchResults }
                                                 onClick={this.props.grabRecName}
-                                                findImage={this.props.findImage} />;
+                                                findImage={this.props.findImage} 
+                                                text="SEARCH RESULTS"/>;
 
 
         return (
