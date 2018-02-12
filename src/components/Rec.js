@@ -14,7 +14,7 @@ class Rec extends Component {
 
 
     render() {
-        let { title, name, text, handleEditClick, handleDeleteClick, image, time } = this.props;
+        let { title, name, text, handleEditClick, handleDeleteClick, image, time, score} = this.props;
         const submitted = (
                         <div className="rec">
                             <div className="rec-image">
@@ -25,16 +25,21 @@ class Rec extends Component {
                                 <p>{ this.props.text }</p>                                
                             </div>
 
-                                <div className="rec-container-right">
-                                    <div className="time-name">
-                                        <p>{ this.props.name }</p> 
-                                        <p>{time}</p>
-                                    </div>
-                                    <div className="modify-buttons">
-                                        <button onClick={() => handleEditClick(this.props.recId, text, name, image, time)}>EDIT</button>
-                                        <button onClick={() => handleDeleteClick(this.props.recId)}>DELETE</button>
-                                    </div>
+                            <div className="rec-container-right">
+                                <div className="time-name">
+                                    <p>{ this.props.name }</p> 
+                                    <p>{time}</p>
                                 </div>
+                                <div className="modify-buttons">
+                                    <button onClick={() => handleEditClick(this.props.recId, text, name, image, time)}>EDIT</button>
+                                    <button onClick={() => handleDeleteClick(this.props.recId)}>DELETE</button>
+                                </div>
+                            </div>
+                            <div className="score-buttons">
+                                <button>Up</button>
+                                <p className="score">{score}</p>
+                                <button>Down</button>
+                            </div>
 
                         </div>
                         )

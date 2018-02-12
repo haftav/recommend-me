@@ -32,12 +32,18 @@ module.exports = {
         res.status(200).send(searches);
     },
     newRec: (req, res) => {
-        let { title, text, name, image, time } = req.body;
+        let { title, text, name, image, time, score } = req.body;
         let id = req.params.id;
         index = searches.findIndex((el) => el.id === Number(id));
 
-        let recId = searches[index].recommends.length;
-        searches[index].recommends.push( { recId, title, name, text, image, time } )
+        let recId;
+        if (searches[index].recommends.length === 0) {
+            recId = 0;
+        } else {
+            recId = searches[index].recommends[searches[index].recommends.length - 1].recId + 1;
+        }
+
+        searches[index].recommends.push( { recId, title, name, text, image, time, score } )
 
         res.status(200).send(searches[index].recommends)
 
@@ -54,19 +60,18 @@ module.exports = {
 
     },
     editRec: (req, res) => {
-        let { title, name, text, image, time, recId } = req.body;
+        let { title, name, text, image, time, score, recId } = req.body;
         let mainId = req.params.id
-        console.log(text);
-        console.log(mainId);
-        console.log(searches);
+
         let index = searches.findIndex((el) => {
             return el.id === Number(mainId)
         })
 
-        console.log('index :' + index)
+        let recIndex = searches[index].recommends.findIndex((el) => el.recId === Number(recId));
+        console.log(recIndex);
+        console.log('rec: ' + JSON.stringify(searches[index].recommends[recIndex]));
 
-        searches[index].recommends[recId] = { title, name, text, image, time, recId }
-        console.log('recommends: ' + searches[index])
+        searches[index].recommends[recIndex] = { title, name, text, image, time, score, recId }
         res.status(200).send(searches[index].recommends);
     },
     deleteRec: (req, res) => {
@@ -78,5 +83,26 @@ module.exports = {
         searches[mainId].recommends.splice(index, 1);
 
         res.status(200).send(searches[mainId].recommends)
+    },
+    upVote: (req, res) => {
+        const mainId = req.params.mainId;
+        const recId = req.params.recId;
+
+        const index = searchs[mainId].recommends.findIndex((el => el.recId === Number(recId)))
+
+        searches[mainId].recommends[index].score++;
+
+        res.status(200).send(searches[mainId].recommends);
+    },
+    downVote: (req, res) => {
+        const mainId = req.params.mainId;
+        const recId = req.params.recId;
+
+        const index = searchs[mainId].recommends.findIndex((el => el.recId === Number(recId)))
+
+        searches[mainId].recommends[index].score++;
+
+        res.status(200).send(searches[mainId].recommends);
     }
+
 }

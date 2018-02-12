@@ -1,6 +1,6 @@
 import React from 'react';
 
-var Edit = ({ text, name, title, recId, image, time,
+var Edit = ({ text, name, title, recId, image, time, score,
             handleSubmitClick, handleCancelClick, 
             handleNameChange, handleTextChange}) => {
 
@@ -21,9 +21,14 @@ var Edit = ({ text, name, title, recId, image, time,
                 <p>{time}</p>
             </div>
             <div className="modify-buttons">
-                <button onClick={() => handleSubmitClick(title, name, text, image, time, recId)}>SUBMIT</button>
+                <button onClick={() => handleSubmitClick(title, name, text, image, time, score, recId)}>SUBMIT</button>
                 <button onClick={() => handleCancelClick()}>CANCEL</button>
             </div>
+        </div>
+        <div className="score-buttons">
+            <button>Up</button>
+            <p className="score">{score}</p>
+            <button>Down</button>
         </div>
 
     </div>        

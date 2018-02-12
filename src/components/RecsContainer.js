@@ -41,6 +41,9 @@ class RecsContainer extends Component {
         this.handleCancelClick = this.handleCancelClick.bind(this);
         this.handleDeleteClick = this.handleDeleteClick.bind(this);
         this.displayRecPicture = this.displayRecPicture.bind(this);
+
+        this.handleUpvote = this.handleUpvote.bind(this);
+        this.handleDownvote = this.handleDownvote.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
@@ -91,6 +94,7 @@ class RecsContainer extends Component {
 
     addToServer() {
         let postTime = date();
+        let score = 0;
         console.log(postTime);
 
         axios.post(`/api/recommends/${this.props.id}`, {
@@ -98,6 +102,7 @@ class RecsContainer extends Component {
             text: this.state.recText,
             name: this.state.userName,
             image: this.state.recImage,
+            score: score,
             time: postTime
         }).then(res => {
             this.setState({ 
@@ -110,6 +115,8 @@ class RecsContainer extends Component {
 
 
     handleEditClick(key, text, name, image, time) {
+        console.log('text: ' + this.state.recText);
+        console.log('name: ' + this.state.userName);
         const originalText = this.state.recText;
         const originalName = this.state.userName;
 
@@ -132,8 +139,8 @@ class RecsContainer extends Component {
 
 
 
-    handleSubmitClick(title, name, text, image, time, recId) {
-        axios.put(`/api/recommends/${this.props.id}`, { title, name, text, image, time, recId}).then(res => {
+    handleSubmitClick(title, name, text, image, time, score, recId) {
+        axios.put(`/api/recommends/${this.props.id}`, { title, name, text, image, time, score, recId}).then(res => {
             this.setState({ editClicked: false, recs: res.data, editId: null })
         })
     }
@@ -147,6 +154,13 @@ class RecsContainer extends Component {
         })
     }
 
+    handleUpvote(recId) {
+        axios.put('')
+    }
+
+    handleDownvote(recId) {
+        
+    }
 
 
 
@@ -156,6 +170,7 @@ class RecsContainer extends Component {
              let name = el.name;
              let text = el.text;
              let image = el.image;
+             let score= el.score;
              let time = el.time;
 
             return (
@@ -166,6 +181,7 @@ class RecsContainer extends Component {
                     name={ this.state.userName }
                     image={ image }
                     time={ time }
+                    score={ score }
                     recId={el.recId}
                     key={idx}
                     handleTextChange={this.handleTextChange}
@@ -178,6 +194,7 @@ class RecsContainer extends Component {
                     text={text}
                     image={image}
                     time={ time }
+                    score={ score }
                     recId={el.recId} 
                     id={this.props.id}
                     key={idx}
@@ -188,6 +205,7 @@ class RecsContainer extends Component {
             
 
          });
+         console.log(recommends);
         const modalSearch = <ModalSearch  
                             grabRecName={this.grabRecName}
                             nameClicked={this.state.nameClicked}
